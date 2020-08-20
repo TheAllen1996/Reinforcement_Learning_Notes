@@ -1,7 +1,5 @@
 ## Reinforcement Learning Notes
 
-The notes so far included **Bandit Algorithms**, **MDP**, **Model-free Methods**, **Value Function Approximation**, **Policy Optimization**.
+The (introductory) notes included **Bandit Algorithms**, **MDP**, **Model-free Methods**, **Value Function Approximation**, **Policy Optimization**. For the state-of-the-art advances, one can refer to paper directly and some excellent blog.
 
-Before moving on, many typos need to be fixed.
-
-Any advice will be appreciated!
+Hope you enjoy your learning.
