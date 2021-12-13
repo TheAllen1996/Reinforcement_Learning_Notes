@@ -1,0 +1,69 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Reinforcement Learning Notes.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: re.bib
+Warning--entry type for "si252" isn't style-file defined
+--line 33 of file re.bib
+Warning--entry type for "introRL" isn't style-file defined
+--line 41 of file re.bib
+Warning--entry type for "ucl_rl" isn't style-file defined
+--line 57 of file re.bib
+Warning--entry type for "liblog" isn't style-file defined
+--line 72 of file re.bib
+Warning--entry type for "liblog-pga" isn't style-file defined
+--line 80 of file re.bib
+Warning--entry type for "notes_GAE" isn't style-file defined
+--line 123 of file re.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 12 entries,
+            4087 wiz_defined-function locations,
+            880 strings with 8864 characters,
+and the built_in function-call counts, 5041 in all, are:
+= -- 362
+> -- 95
+< -- 10
++ -- 46
+- -- 21
+* -- 191
+:= -- 837
+add.period$ -- 24
+call.type$ -- 12
+change.case$ -- 15
+chr.to.int$ -- 18
+cite$ -- 12
+duplicate$ -- 422
+empty$ -- 502
+format.name$ -- 27
+if$ -- 1134
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 93
+newline$ -- 59
+num.names$ -- 12
+pop$ -- 270
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 389
+stack$ -- 0
+substring$ -- 65
+swap$ -- 246
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 12
+warning$ -- 0
+while$ -- 17
+width$ -- 14
+write$ -- 112
+(There were 6 warnings)
