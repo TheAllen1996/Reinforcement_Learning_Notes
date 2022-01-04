@@ -1,17 +1,17 @@
 # Fdb version 3
-["bibtex Reinforcement Learning Notes"] 1604993554 "Reinforcement Learning Notes.aux" "Reinforcement Learning Notes.bbl" "Reinforcement Learning Notes" 1639394304
+["bibtex Reinforcement Learning Notes"] 1641286674 "Reinforcement Learning Notes.aux" "Reinforcement Learning Notes.bbl" "Reinforcement Learning Notes" 1641287374
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/IEEEtran/IEEEtran.bst" 1480098433 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "Reinforcement Learning Notes.aux" 1639394303 12700 0ba57ddd4bc412e7e94ea24569390aff ""
+  "Reinforcement Learning Notes.aux" 1641287370 12700 0ba57ddd4bc412e7e94ea24569390aff ""
   "re.bib" 1597585018 4959 0e939d5d2d32bf5916ab9cf0834fd686 ""
   (generated)
   "Reinforcement Learning Notes.bbl"
   "Reinforcement Learning Notes.blg"
-["xdvipdfmx"] 1639394303 "Reinforcement Learning Notes.xdv" "Reinforcement Learning Notes.pdf" "Reinforcement Learning Notes" 1639394304
-  "Reinforcement Learning Notes.xdv" 1639394303 814792 cc82310b377bda6a2e251aff2059f47f "xelatex"
+["xdvipdfmx"] 1641287372 "Reinforcement Learning Notes.xdv" "Reinforcement Learning Notes.pdf" "Reinforcement Learning Notes" 1641287374
+  "Reinforcement Learning Notes.xdv" 1641287370 814412 9b5a96e6dd1f710b31836de0d8d13681 "xelatex"
   (generated)
   "Reinforcement Learning Notes.pdf"
-["xelatex"] 1639394298 "Reinforcement Learning Notes.tex" "Reinforcement Learning Notes.xdv" "Reinforcement Learning Notes" 1639394304
-  "/dev/null" 1639394298 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1641287363 "Reinforcement Learning Notes.tex" "Reinforcement Learning Notes.xdv" "Reinforcement Learning Notes" 1641287374
+  "/dev/null" 1641287372 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1480098689 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1480098698 1120 1e8878807317373affa7f7bba4cf2f6a ""
@@ -248,13 +248,13 @@
   "/usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf" 1522066949 33362 cf75436e19743e94a92a6b1b9183c434 ""
   "/usr/local/texlive/2018/texmf-var/web2c/xetex/xelatex.fmt" 1552217496 3731937 815adb65e27c9538216e9dbc3ce5865a ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "Reinforcement Learning Notes.aux" 1639394303 12700 0ba57ddd4bc412e7e94ea24569390aff ""
-  "Reinforcement Learning Notes.bbl" 1604993555 2764 a9944274c6597411092648689e127e09 "bibtex Reinforcement Learning Notes"
-  "Reinforcement Learning Notes.tex" 1639394298 117021 d23a7f428a76bae1bc01b39519d7319f ""
-  "Reinforcement Learning Notes.toc" 1639394303 4209 4462582d779cc607f26bc081790dca3a ""
+  "Reinforcement Learning Notes.aux" 1641287370 12700 0ba57ddd4bc412e7e94ea24569390aff ""
+  "Reinforcement Learning Notes.bbl" 1641286674 2764 a9944274c6597411092648689e127e09 "bibtex Reinforcement Learning Notes"
+  "Reinforcement Learning Notes.tex" 1641287363 116980 9b8b76bf53d1d27b70cc204f06c5eaa1 ""
+  "Reinforcement Learning Notes.toc" 1641287370 4209 4462582d779cc607f26bc081790dca3a ""
   "progartcn.cls" 1594215469 13290 5a0d5f452a5e5f7b76e2efb458db61c7 ""
   (generated)
+  "Reinforcement Learning Notes.aux"
+  "Reinforcement Learning Notes.xdv"
   "Reinforcement Learning Notes.toc"
   "Reinforcement Learning Notes.log"
-  "Reinforcement Learning Notes.xdv"
-  "Reinforcement Learning Notes.aux"

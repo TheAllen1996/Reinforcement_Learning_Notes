@@ -91,9 +91,9 @@
 
 	What is Reinforcement Learning and why we care:
 
-	a computational approach to learning whereby \textit{an agent} tries to \textit{maximize} the total amount of \textit{reward} it receives while interacting with a complex and uncertain \textit{environment}.\cite{sutton2018reinforcement}\\
+	A computational approach to learning whereby \textit{an agent} tries to \textit{maximize} the total amount of \textit{reward} it receives while interacting with a complex and uncertain \textit{environment}.\cite{sutton2018reinforcement}\\
 
-	Difference between Reinforcement Learning and Supervised Learning:
+	Differences between Reinforcement Learning and Supervised Learning:
 	\begin{itemize}[noitemsep,topsep=0pt]
 		\item Sequential data as input (\textit{not i.i.d});
 		\item The learner is not told which actions to take, but instead must discover which actions yield the most reward by trying them;
@@ -101,7 +101,7 @@
 		\item There is \textit{no supervisor}, only a reward signal, which is also \textit{delayed}\\
 	\end{itemize}
 
-	Big deal: Able to Achieve Superhuman Performance
+	Big deal: able to achieve superhuman performance
 	\begin{itemize}[noitemsep,topsep=0pt]
 		\item Upper bound for Supervised Learning is human-performance. 
 		\item Upper bound for Reinforcement Learning ?\\
@@ -128,7 +128,7 @@
 
 	All goals of the agent can be described by the maximization of expected cumulative reward.\\
 
-	Types of Reinforcement Learning Agents based on What the Agent Learns
+	Types of Reinforcement Learning agents based on What the Agent Learns
 	\begin{itemize}[noitemsep,topsep=0pt]
 		\item Value-based agent:
 		\begin{itemize}[noitemsep,topsep=0pt]
@@ -146,7 +146,7 @@
 		\end{itemize}
 	\end{itemize}
 
-	Types of Reinforcement Learning Agents on if there is model
+	Types of Reinforcement Learning agents on if there is model
 	\begin{itemize}[noitemsep,topsep=0pt]
 		\item Model-based:
 		\begin{itemize}[noitemsep,topsep=0pt]
@@ -277,20 +277,19 @@
 
 		\qquad \textit{Step 2: Generate $u\sim$}$\text{U}(0,1)$.
 
-		\qquad \textit{Step 3: If $u\le\frac{p(y)}{cq(y)}$, set $x=y$. Otherwise go back to Step 1.}
+		\qquad \textit{Step 3: If $u\le\frac{p(y)}{cq(y)}$, set $x=y$, otherwise go back to Step 1.}
 
 		\textit{Proof}:
 
-		This method can be easily proved. From the description, we have
+		We now show how it works.
 		\[\begin{split}
 		P(X\le \zeta)&=P\left(Y\le\zeta|U\le \frac{p(y)}{cq(y)}\right)\\
 		&=\frac{P(Y\le \zeta, U\le \frac{p(y)}{cq(y)})}{P(U\le \frac{p(y)}{cq(y)})}\\
 		&=\frac{\int_0^\zeta \int_0^{\frac{p(y)}{cq(y)}} 1du\cdot q(y)dy}{\int_{-\infty}^{+\infty}\int_0^{\frac{p(y)}{cq(y)}} 1du\cdot q(y)dy}\\
-		&=\frac{\int_{-\infty}^\zeta p(y)dy}{\int_{-\infty}^{+\infty}p(y)dy}
+		&=\frac{\int_{-\infty}^\zeta p(y)dy}{\int_{-\infty}^{+\infty}p(y)dy}.
 		\end{split}
 		\]
-
-		If $p$ is a valid PDF, the denominator will equal 1. Thus we have
+		Given that $p$ is a valid PDF, the denominator is 1. Thus we have
 		\[P(X\le\zeta)=\int_{-\infty}^\zeta p(x)dx,\]
 		which shows that $X\sim p$.
 		\qed\\
@@ -300,142 +299,141 @@
 		\textbf{Cauchy-Schwarz Inequality}: \textit{For any r.v.s $X$ and $Y$ with finite variances,}
 		\[|\mathbb{E}[XY]|\le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			For any $t$,
-			\[\begin{split}
-			\mathbb{E}[(Y-tX)^2]&\ge 0\\
-			\mathbb{E}[(Y^2-2tXY+t^2X^2)]&\ge 0,
-			\end{split}
-			\]
-			where the left-hand side is a quadratic function with respect to $t$. To satisfy the inequality, the discriminant of the quadratic must be less than 0, which means
-			\[\begin{split}
-			[2\mathbb{E}[XY]]^2-4\cdot \mathbb{E}[X^2]\mathbb{E}[Y^2]&\le 0\\
-			[\mathbb{E}[XY]]^2&\le \mathbb{E}[X^2]\mathbb{E}[Y^2]\\
-			|\mathbb{E}[XY]|&\le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}.
-			\end{split}
-			\]
-			Therefore we have the Cauchy-Schwarz inequality.
-			\qed\\
+		For any $t$,
+		\[\begin{split}
+		\mathbb{E}[(Y-tX)^2]&\ge 0\\
+		\mathbb{E}[(Y^2-2tXY+t^2X^2)]&\ge 0,
+		\end{split}
+		\]
+		where the left-hand side is a quadratic function with respect to $t$. To satisfy the inequality, the discriminant of the quadratic must be less than 0, which means
+		\[\begin{split}
+		[2\mathbb{E}[XY]]^2-4\cdot \mathbb{E}[X^2]\mathbb{E}[Y^2]&\le 0\\
+		[\mathbb{E}[XY]]^2&\le \mathbb{E}[X^2]\mathbb{E}[Y^2]\\
+		|\mathbb{E}[XY]|&\le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}.
+		\end{split}
+		\]
+		Therefore we have the Cauchy-Schwarz inequality.
+		\qed\\
 
 		\textbf{Jensen's Inequality}: \textit{Let $X$ be a random variable. If $g$ is a convex function, then $\mathbb{E}[g(X)]\ge g(\mathbb{E}[X])$. If $g$ is a concave function, then $\mathbb{E}[g(X)]\le g(\mathbb{E}[X])$. In both cases, the only way that equality can hold is if there are constants $a$ and $b$ such that $g(X)=a+bX$ with probability 1.}
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			If $g$ is convex, then all lines that are tangent to $g$ lie below $g$. Denoting the tangent line of $g$ by $a+bx$, we have $g(x)\ge a+bx$ for all $x$ by convexity, so $g(X)\ge a+bX$. Taking the expectation of both sides,
-			\[\begin{split}
-			\mathbb{E}[g(X)]&\ge \mathbb{E}[a+bX]\\
-			&\ge a+b\mathbb{E}[X]\\
-			&\ge g(\mathbb{E}[X]).
-			\end{split}
-			\]
-			If $g$ is concave, then $h=-g$ is convex, so we can apply the proof to $h$ to see that the inequality for $g$ is reversed from the convex case.
+		If $g$ is convex, then all lines that are tangent to $g$ lie below $g$. Denoting the tangent line of $g$ by $a+bx$, we have $g(x)\ge a+bx$ for all $x$ by convexity, so $g(X)\ge a+bX$. Taking the expectation of both sides,
+		\[\begin{split}
+		\mathbb{E}[g(X)]&\ge \mathbb{E}[a+bX]\\
+		&\ge a+b\mathbb{E}[X]\\
+		&\ge g(\mathbb{E}[X]).
+		\end{split}
+		\]
+		If $g$ is concave, then $h=-g$ is convex, so we can apply the proof to $h$ to see that the inequality for $g$ is reversed from the convex case.
 
-			Lastly, assume that $g(X)=a+bX$ holds in the convex case. Let $Y=g(X)-a-bX$. Then $Y$ must be a nonnegative r.v. with $\mathbb{E}[Y]=0$, so $P(Y=0)=1$. So equality holds if and only if $P(g(X)=a+bX)=1$. For the concave case, we can use the similar argument with $Y=a+bX-g(X)$.
-			\qed\\
+		Lastly, assume that $g(X)=a+bX$ holds in the convex case. Let $Y=g(X)-a-bX$. Then $Y$ must be a nonnegative r.v. with $\mathbb{E}[Y]=0$, so $P(Y=0)=1$. So equality holds if and only if $P(g(X)=a+bX)=1$. For the concave case, the similar argument can apply to $Y=a+bX-g(X)$.
+		\qed\\
 
 		\textbf{Norm Inequality}: \textit{For a random variable $X$ whose moment of order $r>0$ is finite, we define the following norm}
-			\[\Vert{X}\Vert_r=(\mathbb{E}[|X|^r])^\frac{1}{r}.\]
+		\[\Vert{X}\Vert_r=(\mathbb{E}[|X|^r])^\frac{1}{r}.\]
 
-			With this definition, we have the following inequalities.
-			\begin{itemize}[noitemsep,topsep=0pt]
-				\item \textit{Holder Inequality}: \textit{Let $\frac{1}{p}+\frac{1}{q}=1$. If $\mathbb{E}[|X|^p], \mathbb{E}[|X|^q]<\infty$, then $|\mathbb{E}[XY]|\le \mathbb{E}[|XY|]\le \Vert X\Vert_p\cdot \Vert Y\Vert_q$.}
-				\item \textit{Lyapunov Inequality}: \textit{For $0<r\le p$, $\Vert X\Vert_r\le\Vert X\Vert_p$.}
-				\item \textit{Minkowski Inequality}: \textit{Let $p\ge 1$. If $\mathbb{E}[|X|^p], \mathbb{E}[|Y|^p]<\infty$, then $\Vert X+Y\Vert_p \le \Vert X\Vert_p+\Vert Y\Vert_p$.}\\
-			\end{itemize}
+		With this definition, we have the following inequalities.
+		\begin{itemize}[noitemsep,topsep=0pt]
+			\item \textit{Holder Inequality}: \textit{Let $\frac{1}{p}+\frac{1}{q}=1$. If $\mathbb{E}[|X|^p], \mathbb{E}[|X|^q]<\infty$, then $|\mathbb{E}[XY]|\le \mathbb{E}[|XY|]\le \Vert X\Vert_p\cdot \Vert Y\Vert_q$.}
+			\item \textit{Lyapunov Inequality}: \textit{For $0<r\le p$, $\Vert X\Vert_r\le\Vert X\Vert_p$.}
+			\item \textit{Minkowski Inequality}: \textit{Let $p\ge 1$. If $\mathbb{E}[|X|^p], \mathbb{E}[|Y|^p]<\infty$, then $\Vert X+Y\Vert_p \le \Vert X\Vert_p+\Vert Y\Vert_p$.}\\
+		\end{itemize}
 
 		\textbf{Markov's Inequality}: \textit{For any r.v. $X$ and constant $a>0$,}
-			\[P(|X|\ge a)\le \frac{\mathbb{E}[|X|]}{a}.\]
+		\[P(|X|\ge a)\le \frac{\mathbb{E}[|X|]}{a}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			Let $Y=\frac{|X|}{a}$. We need to show that $P(Y\ge 1)\le \mathbb{E}[Y]$. Note that 
-			\[I(Y\ge 1)\le Y,\]
-			taking the expectation of both sides, then we have Markov's Inequality.
-			\qed
+		Let $Y=\frac{|X|}{a}$. We need to show that $P(Y\ge 1)\le \mathbb{E}[Y]$. Note that 
+		\[I(Y\ge 1)\le Y,\]
+		taking the expectation of both sides, then we have Markov's Inequality.
+		\qed
 
-			Markov's inequality is a very crude bound because it requires absolutely no assumptions about $X$. The right-hand side of the inequality could be greater than $1$ sometimes, or even infinite.\\
+		Markov's inequality is a very crude bound because it requires absolutely no assumptions about $X$. The right-hand side of the inequality could be greater than $1$ sometimes, or even infinite.\\
 
 		\textbf{Chebyshev's Inequality}: \textit{Let $X$ have mean $\mu$ and variance $\sigma^2$. Then for any $a>0$,}
-			\[P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}.\]
+		\[P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			By Markov's inequality,
-			\[\begin{split}
-			P(|X-\mu|\ge a)&=P((X-\mu)^2\ge a^2)\\
-			&\le \frac{\mathbb{E}[(X-\mu)^2]}{a^2}\\
-			&=\frac{\sigma^2}{a^2}.
-			\end{split}
-			\]
-			\qed
+		By Markov's inequality,
+		\[\begin{split}
+		P(|X-\mu|\ge a)&=P((X-\mu)^2\ge a^2)\\
+		&\le \frac{\mathbb{E}[(X-\mu)^2]}{a^2}\\
+		&=\frac{\sigma^2}{a^2}.
+		\end{split}
+		\]
+		\qed
 
-		\textbf{Chernoff's Inequality}: \textit{For any r.v. $X$ and constants $a>0$ and $t>0$,}
-			\[P(X\ge a)\le \frac{\mathbb{E}[e^{tX}]}{e^{ta}}.\]
+		\textbf{Chernoff's Inequality}: \textit{For any r.v. $X$ and constants $a>0$, $t>0$, we have}
+		\[P(X\ge a)\le \frac{\mathbb{E}[e^{tX}]}{e^{ta}}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			The transformation $g$ with $g(x)=e^{tx}$ is invertible and strictly increasing. So by Markov's inequality, we have
-			\[\begin{split}
-			P(X\ge a)&=P(e^{tX}\ge e^{ta})\\
-			&\le \frac{\mathbb{E}[e^{tX}]}{e^{ta}}.
-			\end{split}
-			\]
-			\qed
+		The transformation $g$ with $g(x)=e^{tx}$ is invertible and strictly increasing. So by Markov's inequality, we have
+		\[\begin{split}
+		P(X\ge a)&=P(e^{tX}\ge e^{ta})\\
+		&\le \frac{\mathbb{E}[e^{tX}]}{e^{ta}}.
+		\end{split}
+		\]
+		\qed
 
 	\subsection{Concentration Inequalities}
 
 		\textbf{Hoeffding Lemma}: \textit{Let $X$ be a r.v. with $\mathbb{E}[X]=0$, taking values in a bounded interval $[a, b]$, where $a$ and $b$ are constants. Then for any $\lambda>0$,}
-			\[\mathbb{E}[e^{\lambda X}]\le e^{\frac{1}{8} \lambda^2(b-a)^2}.\]
+		\[\mathbb{E}[e^{\lambda X}]\le e^{\frac{1}{8} \lambda^2(b-a)^2}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			For the case $a=b=0$, we have $P(X=0)=1$. The equality holds since both sides of the inequality are $1$. Then we consider the case that $a<0$ and $b>0$, which is the general case.
+		For the case $a=b=0$, we have $P(X=0)=1$. The equality holds since both sides of the inequality are $1$. We now consider the general case where $a<0$ and $b>0$.
 
-			Let $f(x)=e^{\lambda x}$ where $x\in [a,b]$. According to its convexity, for any $\alpha\in (0,1)$, we have
-			\[f(\alpha a +(1-\alpha)b)\le \alpha f(a)+(1-\alpha)f(b)=\alpha e^{\lambda a}+(1-\alpha)e^{\lambda b}.\]
+		Let $f(x)=e^{\lambda x}$ where $x\in [a,b]$. According to its convexity, for any $\alpha\in (0,1)$, we have
+		\[f(\alpha a +(1-\alpha)b)\le \alpha f(a)+(1-\alpha)f(b)=\alpha e^{\lambda a}+(1-\alpha)e^{\lambda b}.\]
+		As $X\in [a,b]$, let $\alpha = \frac{b-X}{b-a}$, then we have $f(\alpha a+(1-\alpha)b)=f(X)=e^{\lambda X}$. Plugging the two equations into the previous inequality, we have
+		\[e^{\lambda X}\le \frac{b-X}{b-a}e^{\lambda a}+\frac{X-a}{b-a}e^{\lambda b}.
+		\]
+		Taking the expectation of both sides,
+		\[\mathbb{E}[e^{\lambda X}]\le \frac{b}{b-a}e^{\lambda a}-\frac{a}{b-a}e^{\lambda b}=e^{\lambda a}\left[\frac{b}{b-a}-\frac{a}{b-a}e^{\lambda(b-a)}\right],\]
+		and defining a function $\Phi(t)=-\theta t +\ln (1-\theta+\theta e^t)$ where $\theta=\frac{-a}{b-a} >0$, we have
+		\[\mathbb{E}[e^{\lambda X}]\le e^{\Phi(\lambda(b-a))},\]
+		as $e^{\Phi(\lambda(b-a))}=e^{\lambda a}\left[\frac{b}{b-a}-\frac{a}{b-a}e^{\lambda(b-a)}\right].$
 
-			As $X\in [a,b]$, let $\alpha = \frac{b-X}{b-a}$, then we have $f(\alpha a+(1-\alpha)b)=f(X)=e^{\lambda X}$. Plugging the two equations into the previous inequality, we have
-			\[e^{\lambda X}\le \frac{b-X}{b-a}e^{\lambda a}+\frac{X-a}{b-a}e^{\lambda b}.
-			\]
-			Taking the expectation of both sides,
-			\[\mathbb{E}[e^{\lambda X}]\le \frac{b}{b-a}e^{\lambda a}-\frac{a}{b-a}e^{\lambda b}=e^{\lambda a}\left[\frac{b}{b-a}-\frac{a}{b-a}e^{\lambda(b-a)}\right],\]
-			and defining a function $\Phi(t)=-\theta t +\ln (1-\theta+\theta e^t)$ where $\theta=\frac{-a}{b-a} >0$, we have
-			\[\mathbb{E}[e^{\lambda X}]\le e^{\Phi(\lambda(b-a))},\]
-			as $e^{\Phi(\lambda(b-a))}=e^{\lambda a}\left[\frac{b}{b-a}-\frac{a}{b-a}e^{\lambda(b-a)}\right].$
+		We now focus on $\Phi(t)$. According to Taylor expansion, for any $t>0$, $\exists \tau\in[0,t)$ s.t.
+		\[\begin{split}
+		\Phi(t)&=\Phi(0)+t\Phi'(0)+\frac{1}{2}t^2\Phi''(\tau)\\
+		&=\frac{1}{2} t^2\cdot \frac{(1-\theta)\theta e^\tau}{(1-\theta+\theta e^\tau)^2}\\
+		&\le \frac{1}{8}t^2
+		\end{split}
+		\]
+		since
+		\[(1-\theta+\theta e^\tau)^2=(1-\theta-\theta e^\tau)^2+4(1-\theta)\theta e^\tau\ge 4(1-\theta)\theta e^\tau.\]
 
-			We now focus on $\Phi(t)$. According to Taylor expansion, for any $t>0$, $\exists \tau\in[0,t)$ s.t.
-			\[\begin{split}
-			\Phi(t)&=\Phi(0)+t\Phi'(0)+\frac{1}{2}t^2\Phi''(\tau)\\
-			&=\frac{1}{2} t^2\cdot \frac{(1-\theta)\theta e^\tau}{(1-\theta+\theta e^\tau)^2}\\
-			&\le \frac{1}{8}t^2
-			\end{split}
-			\]
-			since
-			\[(1-\theta+\theta e^\tau)^2=(1-\theta-\theta e^\tau)^2+4(1-\theta)\theta e^\tau\ge 4(1-\theta)\theta e^\tau.\]
-
-			Plugging in $t=\lambda(b-a)$, we have $\Phi(\lambda(b-a))\le \frac{1}{8}\lambda^2(b-a)^2$. It follows that
-			\[\mathbb{E}[e^{\lambda X}]\le e^{\frac{1}{8}\lambda^2(b-a)^2}.\]
-			\qed
+		Plugging in $t=\lambda(b-a)$, we have $\Phi(\lambda(b-a))\le \frac{1}{8}\lambda^2(b-a)^2$. It follows that
+		\[\mathbb{E}[e^{\lambda X}]\le e^{\frac{1}{8}\lambda^2(b-a)^2}.\]
+		\qed
 
 		\textbf{Hoeffding Bound}: \textit{Let $X_1,X_2,...,X_n$ be independent r.v.s with $\mathbb{E}[X_i]=\mu,a\le X_i\le b$ for each $i=1,2,...,n$, where $a, b$ are constants. Then for any $\varepsilon\ge 0$,}
-			\[P\left(\bigg\vert \frac{1}{n}\sum_{i=1}^n X_i-\mu\bigg\vert\ge \varepsilon\right)\le 2e^{-\frac{2n\varepsilon^2}{(b-a)^2}}.\]
+		\[P\left(\bigg\vert \frac{1}{n}\sum_{i=1}^n X_i-\mu\bigg\vert\ge \varepsilon\right)\le 2e^{-\frac{2n\varepsilon^2}{(b-a)^2}}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			Let $Z_i=X_i-\mu$ and $Z=\frac{1}{n}\sum_{i=1}^n Z_i$, then we have $\mathbb{E}[Z_i]=0$ and $\mathbb{E}[Z]=0$. For any $\lambda>0$, we have
-			\[P(Z\ge \varepsilon)\le \frac{\mathbb{E}[e^{\lambda Z}]}{e^{\lambda \varepsilon}}\]
-			by Chernoff's inequality. For $\mathbb{E}[e^{\lambda Z}]$, we have
-			\[\mathbb{E}[e^{\lambda Z}]=\mathbb{E}[e^{\lambda \frac{1}{n}\sum_{i=1}^n Z_i}]=\prod_{i=1}^n \mathbb{E}[e^{\frac{\lambda}{n}Z_i}].\]
-			As $Z_i=X_i-\mu \in [a-\mu,b-\mu]$, using Hoeffding Lemma, we have
-			\[\prod_{i=1}^n \mathbb{E}[e^{\frac{\lambda}{n}Z_i}]\le e^{\frac{\lambda^2}{8n}(b-a)^2}.\]
-			Therefore we have
-			\[P(Z\ge\varepsilon)\le e^{-\lambda\varepsilon+\frac{\lambda^2}{8n}(b-a)^2}.\]
-			Now we focus on the quadratic $-\lambda\varepsilon+\frac{\lambda^2}{8n}(b-a)^2$ w.r.t $\lambda$. It is easy to find the quadratic has the minimum at $\lambda=\frac{4n\varepsilon}{(b-a)^2}$. Plugging in $\lambda=\frac{4n\varepsilon}{(b-a)^2}$, we have
-			\[P(Z\ge\varepsilon)\le e^{\frac{-2n\varepsilon^2}{(b-a)^2}}.\]
-			Therefore by the symmetry we have
-			\[P\left(\bigg\vert \frac{1}{n}\sum_{i=1}^n X_i-\mu\bigg\vert\ge \varepsilon\right)\le2e^{\frac{-2n\varepsilon^2}{(b-a)^2}}.\]
-			\qed
+		Let $Z_i=X_i-\mu$ and $Z=\frac{1}{n}\sum_{i=1}^n Z_i$, then we have $\mathbb{E}[Z_i]=0$ and $\mathbb{E}[Z]=0$. For any $\lambda>0$, we have
+		\[P(Z\ge \varepsilon)\le \frac{\mathbb{E}[e^{\lambda Z}]}{e^{\lambda \varepsilon}}\]
+		by Chernoff's inequality. For $\mathbb{E}[e^{\lambda Z}]$, we have
+		\[\mathbb{E}[e^{\lambda Z}]=\mathbb{E}[e^{\lambda \frac{1}{n}\sum_{i=1}^n Z_i}]=\prod_{i=1}^n \mathbb{E}[e^{\frac{\lambda}{n}Z_i}].\]
+		As $Z_i=X_i-\mu \in [a-\mu,b-\mu]$, using Hoeffding Lemma, we have
+		\[\prod_{i=1}^n \mathbb{E}[e^{\frac{\lambda}{n}Z_i}]\le e^{\frac{\lambda^2}{8n}(b-a)^2}.\]
+		Therefore we have
+		\[P(Z\ge\varepsilon)\le e^{-\lambda\varepsilon+\frac{\lambda^2}{8n}(b-a)^2}.\]
+		Now we focus on the quadratic $-\lambda\varepsilon+\frac{\lambda^2}{8n}(b-a)^2$ w.r.t $\lambda$. It is easy to find the quadratic has the minimum at $\lambda=\frac{4n\varepsilon}{(b-a)^2}$. Plugging in $\lambda=\frac{4n\varepsilon}{(b-a)^2}$, we have
+		\[P(Z\ge\varepsilon)\le e^{\frac{-2n\varepsilon^2}{(b-a)^2}}.\]
+		Therefore by the symmetry we have
+		\[P\left(\bigg\vert \frac{1}{n}\sum_{i=1}^n X_i-\mu\bigg\vert\ge \varepsilon\right)\le2e^{\frac{-2n\varepsilon^2}{(b-a)^2}}.\]
+		\qed
 
 	\subsection{Conditional Expectation}
 
@@ -444,61 +442,61 @@
 		For conditional expectation, the case is similar.\\
 
 		\textbf{Taking out what's known}: \textit{For any function $h$,}
-			\[\mathbb{E}[h(X)Y|X]=h(X)\mathbb{E}[Y|X].\]
-			Intuitively, when we take expectations given $X$, we are treating $X$ as if it has crystallized into a known constant. Then any function of $X$, say h($X$), also acts like a known constant while we are conditioning on $X$.\\
+		\[\mathbb{E}[h(X)Y|X]=h(X)\mathbb{E}[Y|X].\]
+		Intuitively, when we take expectations given $X$, we are treating $X$ as if it has crystallized into a known constant. Then any function of $X$, say h($X$), also acts like a known constant while we are conditioning on $X$.\\
 
 		\textbf{Law of Total Expectation (LOTE)}: \textit{ Let $A_1, ..., A_n$ be a partition of a sample space, with $P(A_i ) > 0$ for all $i$, and let $Y$ be a random variable on this sample space. Then}
 			\[\mathbb{E}[Y]=\sum_{i=1}^n \mathbb{E}[Y|A_i]P(A_i).\]\\
 
 		\textbf{Adam's Law}: \textit{For any r.v.s $X$ and $Y$,}
-			\[\mathbb{E}[\mathbb{E}[Y|X]] = \mathbb{E}[Y].\]
+		\[\mathbb{E}[\mathbb{E}[Y|X]] = \mathbb{E}[Y].\]
 
-			\textit{Proof:}
+		\textit{Proof:}
 
-			Without loss of generality, we consider the case where $X$ and $Y$ are both discrete. Let $\mathbb{E}[Y|X]=g(X)$. Expanding the definition of $g(x)$ by applying LOTUS, we have
-			\begin{align*}
-			\mathbb{E}[\mathbb{E}[Y|X]]&=\mathbb{E}[g(X)]\\
-			&=\sum_x g(x)P(X=x)\\
-			&=\sum_x \mathbb{E}[Y|X=x] P(X=x)\tag{1}\\
-			&=\sum_x\left(\sum_y y P(Y=y|X=x)\right)P(X=x)\\
-			&=\sum_y y \sum_x P(Y=y,X=x)\\
-			&=\sum_y y P(Y=y)\\
-			&=\mathbb{E}[Y]\tag{2}
-			\end{align*}
-			as desired. Also, as it shown in the proof, with $(1)$ and $(2)$ we can prove the LOTE.
-			\qed\\
+		Without loss of generality, we consider the case where $X$ and $Y$ are both discrete. Let $\mathbb{E}[Y|X]=g(X)$. Expanding the definition of $g(x)$ by applying LOTUS, we have
+		\begin{align*}
+		\mathbb{E}[\mathbb{E}[Y|X]]&=\mathbb{E}[g(X)]\\
+		&=\sum_x g(x)P(X=x)\\
+		&=\sum_x \mathbb{E}[Y|X=x] P(X=x)\tag{1}\\
+		&=\sum_x\left(\sum_y y P(Y=y|X=x)\right)P(X=x)\\
+		&=\sum_y y \sum_x P(Y=y,X=x)\\
+		&=\sum_y y P(Y=y)\\
+		&=\mathbb{E}[Y]\tag{2}
+		\end{align*}
+		as desired. Also, as it shown in the proof, with $(1)$ and $(2)$ we can prove the LOTE.
+		\qed\\
 
 		\textbf{Adam's law with extra conditioning}: \textit{For any r.v.s $X,Y,Z$ we have}
-			\[\mathbb{E}[\mathbb{E}[Y|X,Z]|Z]=\mathbb{E}[Y|Z].\]
+		\[\mathbb{E}[\mathbb{E}[Y|X,Z]|Z]=\mathbb{E}[Y|Z].\]
 
-			\textit{Proof:}
+		\textit{Proof:}
 
-			Define the expectation $\hat{\mathbb{E}}[\cdot ] =\mathbb{E}[\cdot | Z]$. The key is that \textit{``conditional expectation is expectation''}. We have
-			\begin{align*}
-			\mathbb{E}[\mathbb{E}[Y|X,Z]|Z]&=\hat{\mathbb{E}}[\hat{\mathbb{E}}[Y|X]]\\
-			&=\hat{\mathbb{E}}[Y] \tag{by Adam's Law}\\
-			&=\mathbb{E}[Y|Z]
-			\end{align*}
-			\qed\\
+		Define the expectation $\hat{\mathbb{E}}[\cdot ] =\mathbb{E}[\cdot | Z]$. The key is that \textit{``conditional expectation is expectation''}. We have
+		\begin{align*}
+		\mathbb{E}[\mathbb{E}[Y|X,Z]|Z]&=\hat{\mathbb{E}}[\hat{\mathbb{E}}[Y|X]]\\
+		&=\hat{\mathbb{E}}[Y] \tag{by Adam's Law}\\
+		&=\mathbb{E}[Y|Z]
+		\end{align*}
+		\qed\\
 
-			\textbf{Eve's law}: \textit{ For any r.v.s $X$ and $Y$,}
-			\[Var(Y)=\mathbb{E}[Var(Y|X)]+Var(\mathbb{E}[Y|X]).\]
-			\textit{It is also known as the law of the variance or the variance decomposition formula.}
+		\textbf{Eve's law}: \textit{ For any r.v.s $X$ and $Y$,}
+		\[Var(Y)=\mathbb{E}[Var(Y|X)]+Var(\mathbb{E}[Y|X]).\]
+		\textit{It is also known as the law of the variance or the variance decomposition formula.}
 
-			\textit{Proof:}
-			
-			Let $g(X)=\mathbb{E}[Y|X]$. By Adam's law, we have $\mathbb{E}[g(X)]=\mathbb{E}[\mathbb{E}[Y|X]]=\mathbb{E}[Y]$. According to the variance of the expectation that
-			\[Var(Y|X)=\mathbb{E}[Y^2|X]-(\mathbb{E}[Y|X])^2,\]
-			which can be shown by the way we prove Adam's law, we have
-			\begin{align*}
-			\mathbb{E}[Var(Y|X)]&=\mathbb{E}[\mathbb{E}[Y^2|X]-(g(X))^2]\\
-			&=\mathbb{E}[\mathbb{E}[Y^2|X]]-\mathbb{E}[(g(X))^2]\\
-			&=\mathbb{E}[Y^2]-\mathbb{E}[(g(X))^2], \tag{1}\\
-			Var(\mathbb{E}[Y|X])&=\mathbb{E}[(g(X))^2]-(\mathbb{E}[\mathbb{E}[Y|X]])^2\\
-			&=\mathbb{E}[g(X)^2]-(\mathbb{E}[Y])^2. \tag{2}
-			\end{align*}
-			Then the Eve's law can be shown by $(1)+(2)$.
-			\qed\\
+		\textit{Proof:}
+		
+		Let $g(X)=\mathbb{E}[Y|X]$. By Adam's law, we have $\mathbb{E}[g(X)]=\mathbb{E}[\mathbb{E}[Y|X]]=\mathbb{E}[Y]$. According to the variance of the expectation that
+		\[Var(Y|X)=\mathbb{E}[Y^2|X]-(\mathbb{E}[Y|X])^2,\]
+		which can be shown by the way we prove Adam's law, we have
+		\begin{align*}
+		\mathbb{E}[Var(Y|X)]&=\mathbb{E}[\mathbb{E}[Y^2|X]-(g(X))^2]\\
+		&=\mathbb{E}[\mathbb{E}[Y^2|X]]-\mathbb{E}[(g(X))^2]\\
+		&=\mathbb{E}[Y^2]-\mathbb{E}[(g(X))^2], \tag{1}\\
+		Var(\mathbb{E}[Y|X])&=\mathbb{E}[(g(X))^2]-(\mathbb{E}[\mathbb{E}[Y|X]])^2\\
+		&=\mathbb{E}[g(X)^2]-(\mathbb{E}[Y])^2. \tag{2}
+		\end{align*}
+		Then the Eve's law can be shown by $(1)+(2)$.
+		\qed\\
 
 \pagebreak
 
@@ -508,213 +506,213 @@
 
 	\subsection{Bandit Models}
 
-			As a special case of Reinforcement Learning, bandit algorithms share some important concepts of that.
+		As a special case of Reinforcement Learning, bandit algorithms share some important concepts of that.
 
-			\textbf{Reward}: \textit{A reward $R_t$ is a scalar feedback signal which indicates how well agent is doing at step $t$.}
+		\textbf{Reward}: \textit{A reward $R_t$ is a scalar feedback signal which indicates how well agent is doing at step $t$.}
 
-			Reinforcement learning is based on the reward hypothesis that \textit{all goals can be described by the maximization of expected cumulative reward}. Furthermore, Depends on how well we know the reward, there are three types of feedback.
+		Reinforcement learning is based on the reward hypothesis that \textit{all goals can be described by the maximization of expected cumulative reward}. Furthermore, Depends on how well we know the reward, there are three types of feedback.
 
-			\textbf{Bandit Feedback}: \textit{the agent only knows the reward for the chosen arm;}
+		\textbf{Bandit Feedback}: \textit{the agent only knows the reward for the chosen arm;}
 
-			\textbf{Full Feedback}: \textit{the agent knows the rewards for all arms that could have been chosen;}
+		\textbf{Full Feedback}: \textit{the agent knows the rewards for all arms that could have been chosen;}
 
-			\textbf{Partial Feedback}: \textit{apart from the chosen arm, the agent knows rewards for some arms.}
+		\textbf{Partial Feedback}: \textit{apart from the chosen arm, the agent knows rewards for some arms.}
 
-			Besides the feedback, the rewards model also varies, such as \textit{IID rewards, adversarial rewards, constrained adversarial rewards, and stochastic rewards}.\\
+		Besides the feedback, the rewards model also varies, such as \textit{IID rewards, adversarial rewards, constrained adversarial rewards, and stochastic rewards}.\\
 
 	\subsection{Stochastic Bandits}
 
-			The basic settings of stochastic bandits are \textit{bandit feedback} and \textit{IID reward}. Also, we assume that per-round rewards are bounded. A multi-armed bandit $<\mathcal{A,R}>$ are defined as follows:
+		The basic settings of stochastic bandits are \textit{bandit feedback} and \textit{IID reward}. Also, we assume that per-round rewards are bounded. A multi-armed bandit $<\mathcal{A,R}>$ are defined as follows:
 
-			\begin{itemize}[noitemsep,topsep=0pt]
-			\item $\mathcal{A}$: a known set of $m$ actions;
-			\item $\mathcal{R}^{a}(r)=\mathbb{P}(r|a)$: an \textit{unknown} probability distribution over rewards $r$;
-			\item $a_t$: the action selected by the agent at time $t$ and $a_t\in \mathcal{A}$;
-			\item $r_t$: the reward generated by the environment at time $t$ and $r_t\sim \mathcal{R}^{a_t}$;
-			\item $\mathbb{E}\left[\sum_{\tau=1}^t r_{\tau}\right]$: the goal we want to maximize.\\
-			\end{itemize}
+		\begin{itemize}[noitemsep,topsep=0pt]
+		\item $\mathcal{A}$: a known set of $m$ actions;
+		\item $\mathcal{R}^{a}(r)=\mathbb{P}(r|a)$: an \textit{unknown} probability distribution over rewards $r$;
+		\item $a_t$: the action selected by the agent at time $t$ and $a_t\in \mathcal{A}$;
+		\item $r_t$: the reward generated by the environment at time $t$ and $r_t\sim \mathcal{R}^{a_t}$;
+		\item $\mathbb{E}\left[\sum_{\tau=1}^t r_{\tau}\right]$: the goal we want to maximize.\\
+		\end{itemize}
 
-			For convenience, we define
+		For convenience, we define
 
-			\begin{itemize}[noitemsep,topsep=0pt]
-			\item $Q(a)=\mathbb{E}[r_t|a_t=a]$: the mean reward for the action $a$;
-			\item $V^\ast=\max_{a\in \mathcal{A}} Q(a)$: the optimal reward for the action $a$;
-			\item $L_\tau=\mathbb{E}[V^\ast-Q(a_\tau)]$: the regret for the round $\tau$, indicating the opportunity loss.\\
-			\end{itemize}
+		\begin{itemize}[noitemsep,topsep=0pt]
+		\item $Q(a)=\mathbb{E}[r_t|a_t=a]$: the mean reward for the action $a$;
+		\item $V^\ast=\max_{a\in \mathcal{A}} Q(a)$: the optimal reward for the action $a$;
+		\item $L_\tau=\mathbb{E}[V^\ast-Q(a_\tau)]$: the regret for the round $\tau$, indicating the opportunity loss.\\
+		\end{itemize}
 
-			With those definitions, the goal of the multi-armed bandit $<\mathcal{A,R}>$ is equivalent to minimize
+		With those definitions, the goal of the multi-armed bandit $<\mathcal{A,R}>$ is equivalent to minimize
 
-			\[L_t=\mathbb{E}\left[\sum_{\tau=1}^t(V^\ast-Q(a_\tau))\right].\label{rl_regret}\]
+		\[L_t=\mathbb{E}\left[\sum_{\tau=1}^t(V^\ast-Q(a_\tau))\right].\label{rl_regret}\]
 
-			That is to say, minimize the total regret we might have by not selecting the optimal action up to the time step $t$. Another way to formulate the regret is about counting:
+		That is to say, minimize the total regret we might have by not selecting the optimal action up to the time step $t$. Another way to formulate the regret is about counting:
 
-			$N_t(a)=\sum_{\tau=1}^t I_{a_\tau=a}$: the number of selections for the action $a$ after the end of the round $t$;
+		$N_t(a)=\sum_{\tau=1}^t I_{a_\tau=a}$: the number of selections for the action $a$ after the end of the round $t$;
 
-			$\Delta_a=V^\ast-Q(a)$: the difference in the value between the action $a$ and the optimal action $a^\ast$;
+		$\Delta_a=V^\ast-Q(a)$: the difference in the value between the action $a$ and the optimal action $a^\ast$;
 
-			Then the regret follows that
-			\[
-			L_t=\sum_{a\in \mathcal{A}}\mathbb{E}[N_t(a)]\Delta_a,
-			\label{rl_regret_count}
-			\]
-			which is called \textit{Regret Decomposition Lemma}. Depending on how the regret converges, we have
+		Then the regret follows that
+		\[
+		L_t=\sum_{a\in \mathcal{A}}\mathbb{E}[N_t(a)]\Delta_a,
+		\label{rl_regret_count}
+		\]
+		which is called \textit{Regret Decomposition Lemma}. Depending on how the regret converges, we have
 
-			\textbf{Linear regret}: \textit{The regret $L_t$ over $t$ rounds is s.t.}
-			\[\lim_{t\to\infty} \frac{L_t}{t}=1.\]
+		\textbf{Linear regret}: \textit{The regret $L_t$ over $t$ rounds is s.t.}
+		\[\lim_{t\to\infty} \frac{L_t}{t}=1.\]
 
-			\textbf{Sublinear regret}: \textit{The regret $L_t$ over $t$ rounds is s.t.}
-			\[\lim_{t\to\infty} \frac{L_t}{t}=0.\]
+		\textbf{Sublinear regret}: \textit{The regret $L_t$ over $t$ rounds is s.t.}
+		\[\lim_{t\to\infty} \frac{L_t}{t}=0.\]
 
-			\textbf{Logarithmic asymptotic regret}: \textit{The performance of any bandit algorithm is determined by similarity between optimal arm and other arms. Asymptotic total regret is at least logarithmic in number of steps}:
-			\[\lim_{t\to\infty}L_t\ge \log t\sum_{a|\Delta_a>0}\frac{\Delta_a}{KL(\mathcal{R^a}||\mathcal{R^\ast})}.\]
-			The lower bound is also known as \textit{Lai-Robbins} lower bound. Such lower bound can be obtained with advance knowledge of the gap.\\
+		\textbf{Logarithmic asymptotic regret}: \textit{The performance of any bandit algorithm is determined by similarity between optimal arm and other arms. Asymptotic total regret is at least logarithmic in number of steps}:
+		\[\lim_{t\to\infty}L_t\ge \log t\sum_{a|\Delta_a>0}\frac{\Delta_a}{KL(\mathcal{R^a}||\mathcal{R^\ast})}.\]
+		The lower bound is also known as \textit{Lai-Robbins} lower bound. Such lower bound can be obtained with advance knowledge of the gap.\\
 
-			\textbf{The Exploration-Exploitation Dilemma}: \textit{As the action-values are unknown, we must both try actions to learn the action-values (explore), and prefer those that appear best (exploit).}\\
+		\textbf{The Exploration-Exploitation Dilemma}: \textit{As the action-values are unknown, we must both try actions to learn the action-values (explore), and prefer those that appear best (exploit).}\\
 
 	\subsection{Greedy Algorithms}
 
-			Greedy algorithm tends to take the best action most of the time, while doing exploration occasionally.
+		Greedy algorithm tends to take the best action most of the time, while doing exploration occasionally.
 
-			\textbf{Greedy Action}: \textit{Define the greedy action at time $t$ as
-			\[a^\varepsilon_t=\arg\max_{a\in \mathcal{A}} Q(a).\]
-			If $a_t=a_t^\varepsilon$, we are making exploitation, otherwise, we are making exploration, i.e. selecting an arm arbitrarily.}
+		\textbf{Greedy Action}: \textit{Define the greedy action at time $t$ as
+		\[a^\varepsilon_t=\arg\max_{a\in \mathcal{A}} Q(a).\]
+		If $a_t=a_t^\varepsilon$, we are making exploitation, otherwise, we are making exploration, i.e. selecting an arm arbitrarily.}
 
-		 	Usually $Q(a)$ is estimated by Monte-Carlo evaluation:
-		 	\[\hat{Q}_t(a)=\frac{1}{N_{t-1}(a)}\sum_{\tau=1}^{t-1}r_\tau I(a_\tau=a).\]
+	 	Usually $Q(a)$ is estimated by Monte-Carlo evaluation:
+	 	\[\hat{Q}_t(a)=\frac{1}{N_{t-1}(a)}\sum_{\tau=1}^{t-1}r_\tau I(a_\tau=a).\]
 
-		 	\textbf{$\varepsilon$-greedy algorithm}: \textit{Rather than making exploitation every round, we make exploitation with probability $1-\varepsilon$, or make exploration with probability $\varepsilon$, which usually is a small number.}\\
+	 	\textbf{$\varepsilon$-greedy algorithm}: \textit{Rather than making exploitation every round, we make exploitation with probability $1-\varepsilon$, or make exploration with probability $\varepsilon$, which usually is a small number.}\\
 
-		 	\begin{algorithm}[H]
-			\caption{$\varepsilon-$greedy}
-			\label{alg: eps}
-			\begin{algorithmic}[1]
-				\State initialize $\hat{Q}(a)\gets 0,\ N(a)\gets0,\ \forall a\in\mathcal{A}$;
-				\For {each time slot}:
-					\State $a'\gets\begin{cases}\arg\max_{a} \hat{Q}(a) & \text{with probability }1-\varepsilon;\\\text{a random action} & \text{with probability }\varepsilon;\end{cases}$
-					\State $r\gets bandit(a')$;
-					\State $N(a')\gets N(a')+1$;
-					\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
-            	\EndFor
-			\end{algorithmic}
-			\end{algorithm}
+	 	\begin{algorithm}[H]
+		\caption{$\varepsilon-$greedy}
+		\label{alg: eps}
+		\begin{algorithmic}[1]
+			\State initialize $\hat{Q}(a)\gets 0,\ N(a)\gets0,\ \forall a\in\mathcal{A}$;
+			\For {each time slot}:
+				\State $a'\gets\begin{cases}\arg\max_{a} \hat{Q}(a) & \text{with probability }1-\varepsilon;\\\text{a random action} & \text{with probability }\varepsilon;\end{cases}$
+				\State $r\gets bandit(a')$;
+				\State $N(a')\gets N(a')+1$;
+				\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
+        	\EndFor
+		\end{algorithmic}
+		\end{algorithm}
 
-			In practice, it is useful to initialize $\hat{Q}(a)$ with high values. Such trick is called \textit{optimistic initialization}.\\
+		In practice, it is useful to initialize $\hat{Q}(a)$ with high values. Such trick is called \textit{optimistic initialization}.\\
 
-            \textbf{Decaying $\varepsilon_t$-greedy algorithm}: \textit{The greedy degree $\varepsilon$ in decaying version is not a constant. Rather, we have a decay schedule for $\varepsilon_t$ as}
-            \[\varepsilon_t=\min\left\{1,\frac{c|\mathcal{A}|}{d^2t}\right\},\]
-            \textit{where $c>0$ and $d=\min_{a|\Delta a>0}\Delta_i$.}
+        \textbf{Decaying $\varepsilon_t$-greedy algorithm}: \textit{The greedy degree $\varepsilon$ in decaying version is not a constant. Rather, we have a decay schedule for $\varepsilon_t$ as}
+        \[\varepsilon_t=\min\left\{1,\frac{c|\mathcal{A}|}{d^2t}\right\},\]
+        \textit{where $c>0$ and $d=\min_{a|\Delta a>0}\Delta_i$.}
 
-            For decaying $\varepsilon$-greedy algorithm, it usually has a better performance than the vanilla version, however, the schedule for $\varepsilon_t$ requires advance knowledge of gaps $\Delta_a$.\\
+        For decaying $\varepsilon$-greedy algorithm, it usually has a better performance than the vanilla version, however, the schedule for $\varepsilon_t$ requires advance knowledge of gaps $\Delta_a$.\\
 
     \subsection{UCB Algorithms}
 
-    		In $\varepsilon$-greedy algorithm, we make exploration purely randomly, which may waste the opportunity to try out other options. To avoid such inefficient exploration, UCB algorithm allows us to pick the arm with the highest upper bound with high probability. 
+		In $\varepsilon$-greedy algorithm, we make exploration purely randomly, which may waste the opportunity to try out other options. To avoid such inefficient exploration, UCB algorithm allows us to pick the arm with the highest upper bound with high probability. 
 
-        	\textbf{UCB algorithm}: \textit{Estimate an upper confidence bound $\hat{U}_t(a)$ for each $Q(a)$, i.e.}
-        	\[Q(a)\le \hat{Q}_t(a)+\hat{U}_t(a).\]
-        	\textit{Then select actions with max upper confidence bound, i.e.}
-        	\[a_t=\arg\max_{a\in \mathcal{A}}\{\hat{Q}_t(a)+\hat{U}_t(a)\}.\]
+    	\textbf{UCB algorithm}: \textit{Estimate an upper confidence bound $\hat{U}_t(a)$ for each $Q(a)$, i.e.}
+    	\[Q(a)\le \hat{Q}_t(a)+\hat{U}_t(a).\]
+    	\textit{Then select actions with max upper confidence bound, i.e.}
+    	\[a_t=\arg\max_{a\in \mathcal{A}}\{\hat{Q}_t(a)+\hat{U}_t(a)\}.\]
 
-        	In other words, UCB algorithm favors exploration of actions with a strong potential to have an optimal value. When we don't have any prior knowledge, the bound can be determined by \textit{Hoeffding's Inequality}. It follows that
-        	\[P(Q(a)> \hat{Q}_t(a)+\hat{U}_t(a))\le e^{-2N_t(a)U_t^2(a)}.\]
-        	Since we want to pick a bound so that with high chances the true mean $Q(a)$ is blow the sample mean $\hat{Q}_t(a)$ $+$ the upper confidence bound $\hat{U}_t(a)$, the right-hand side of the inequality should be a small probability, for example, a tiny threshold $p$, therefore solving for $\hat{U}_t(a)$ we have
-        	\[\hat{U}_t(a)=\sqrt{\frac{-\log p}{2N_t(a)}}.\]
-        	The upper bound $\hat{U}_t(a)$ is a function of $N_t(a)$ which means a larger number of trials $N_t(a)$ should give us a smaller bound $\hat{U}_t(a)$. Further, we want the small bound to have a high probability, which we can achieve by designing the $p$.
+    	In other words, UCB algorithm favors exploration of actions with a strong potential to have an optimal value. When we don't have any prior knowledge, the bound can be determined by \textit{Hoeffding's Inequality}. It follows that
+    	\[P(Q(a)> \hat{Q}_t(a)+\hat{U}_t(a))\le e^{-2N_t(a)U_t^2(a)}.\]
+    	Since we want to pick a bound so that with high chances the true mean $Q(a)$ is blow the sample mean $\hat{Q}_t(a)$ $+$ the upper confidence bound $\hat{U}_t(a)$, the right-hand side of the inequality should be a small probability, for example, a tiny threshold $p$, therefore solving for $\hat{U}_t(a)$ we have
+    	\[\hat{U}_t(a)=\sqrt{\frac{-\log p}{2N_t(a)}}.\]
+    	The upper bound $\hat{U}_t(a)$ is a function of $N_t(a)$ which means a larger number of trials $N_t(a)$ should give us a smaller bound $\hat{U}_t(a)$. Further, we want the small bound to have a high probability, which we can achieve by designing the $p$.
 
-        	\textbf{UCB1}: \textit{As we want to make more confident bound estimation with more rewards observed, the threshold $p$ should be reduced in time. A reasonable idea is setting $p=t^{-4}$ and then we get UCB1 algorithm}
-        	\[\hat{U}_t(a)=\sqrt{\frac{2\log t}{N_t(a)}},\]
-        	\[a_t^{UCB1}=\arg\max_{a\in \mathcal{A}}\left\{\hat{Q}(a)+\sqrt{\frac{2\log t}{N_t(a)}}\right\}.\]
-        	The regret bound of UCB1 is
-        	\[\lim_{t\to\infty}L_t\le 8\log t\sum_{a|\Delta_a>0} \Delta_a.\]
+    	\textbf{UCB1}: \textit{As we want to make more confident bound estimation with more rewards observed, the threshold $p$ should be reduced in time. A reasonable idea is setting $p=t^{-4}$ and then we get UCB1 algorithm}
+    	\[\hat{U}_t(a)=\sqrt{\frac{2\log t}{N_t(a)}},\]
+    	\[a_t^{UCB1}=\arg\max_{a\in \mathcal{A}}\left\{\hat{Q}(a)+\sqrt{\frac{2\log t}{N_t(a)}}\right\}.\]
+    	The regret bound of UCB1 is
+    	\[\lim_{t\to\infty}L_t\le 8\log t\sum_{a|\Delta_a>0} \Delta_a.\]
 
-        	\begin{algorithm}[H]
-			\caption{UCB1}
-			\label{alg: ucb}
-			\begin{algorithmic}[1]
-				\State initialize $\hat{Q}(a)\gets 0,\ N(a)\gets0,\ \forall a\in\mathcal{A}$;
-				\For {each $a\in\mathcal{A}$}:
-					\State $\hat{Q}(a)\gets bandit(a)$;
-					\State $N(a)\gets 1$;
-				\EndFor
-				\For {each time slot}:
-					\State $a'\gets\arg\max_{a} \left(\hat{Q}(a)+c\cdot\sqrt{\frac{2\log t}{N(a)}}\right)$;
-					\State $r\gets bandit(a')$;
-					\State $N(a')\gets N(a')+1$;
-					\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
-            	\EndFor
-			\end{algorithmic}
-			\end{algorithm}
+    	\begin{algorithm}[H]
+		\caption{UCB1}
+		\label{alg: ucb}
+		\begin{algorithmic}[1]
+			\State initialize $\hat{Q}(a)\gets 0,\ N(a)\gets0,\ \forall a\in\mathcal{A}$;
+			\For {each $a\in\mathcal{A}$}:
+				\State $\hat{Q}(a)\gets bandit(a)$;
+				\State $N(a)\gets 1$;
+			\EndFor
+			\For {each time slot}:
+				\State $a'\gets\arg\max_{a} \left(\hat{Q}(a)+c\cdot\sqrt{\frac{2\log t}{N(a)}}\right)$;
+				\State $r\gets bandit(a')$;
+				\State $N(a')\gets N(a')+1$;
+				\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
+        	\EndFor
+		\end{algorithmic}
+		\end{algorithm}
 
-        	An intuitive explanation of why UCB works better than greedy algorithm lies in how it handle exploitation \textit{v.s} exploration: when $\hat{Q}_t(a)$ is large, specifically, $\hat{Q}_t(a)\gg \hat{U}_t(a)$, it indicates a high expected reward and leads to exploitation; when $N_t(a)$ is small, concretely, $\hat{Q}_t(a)\ll \hat{U}_t(a)$, it indicates the action may have a great potential and leads to exploration.\\
+    	An intuitive explanation of why UCB works better than greedy algorithm lies in how it handle exploitation \textit{v.s} exploration: when $\hat{Q}_t(a)$ is large, specifically, $\hat{Q}_t(a)\gg \hat{U}_t(a)$, it indicates a high expected reward and leads to exploitation; when $N_t(a)$ is small, concretely, $\hat{Q}_t(a)\ll \hat{U}_t(a)$, it indicates the action may have a great potential and leads to exploration.\\
 
-        	So far we have made no assumptions about the reward distribution $\mathcal{R}$, and therefore we have to rely on the Hoeffding's Inequality for a very generalize estimation. If we are able to know the distribution upfront, we would be able to make better bound estimation.
+    	So far we have made no assumptions about the reward distribution $\mathcal{R}$, and therefore we have to rely on the Hoeffding's Inequality for a very generalize estimation. If we are able to know the distribution upfront, we would be able to make better bound estimation.
 
     \subsection{Thompson Sampling Algorithms}
 
-        	Thompson Sampling algorithm makes use of the posterior to guide exploration. To be specific, at each time step, we want to select action a according to the probability that $a$ is the optimal action:
-        	\[\pi(a|h_t)=P(Q(a)>Q(a'),\ \forall a'\ne a|h_t),\]
-        	where $h_t=a_1,r_1,...,a_{t-1},r_{t-1}$ is the history.
+    	Thompson Sampling algorithm makes use of the posterior to guide exploration. To be specific, at each time step, we want to select action a according to the probability that $a$ is the optimal action:
+    	\[\pi(a|h_t)=P(Q(a)>Q(a'),\ \forall a'\ne a|h_t),\]
+    	where $h_t=a_1,r_1,...,a_{t-1},r_{t-1}$ is the history.
 
-        	\textbf{Thompson sampling}: \textit{Thompson sampling use Bayes' law to compute posterior distribution $P(\mathcal{R}|h_t)$ and compute the action-value function $\hat{Q}(a)=f(\mathcal{R}_a)$, then it selects the action}
-        	\[a_t^{TS}=\arg\max_{a\in \mathcal{A}} \hat{Q}(a).\]
+    	\textbf{Thompson sampling}: \textit{Thompson sampling use Bayes' law to compute posterior distribution $P(\mathcal{R}|h_t)$ and compute the action-value function $\hat{Q}(a)=f(\mathcal{R}_a)$, then it selects the action}
+    	\[a_t^{TS}=\arg\max_{a\in \mathcal{A}} \hat{Q}(a).\]
 
-        	A naive example for Thompson sampling is for Beta-Bernoulli Bandit. It assumes that the action $k$ being played produces a reward satisfying \textit{Bern}$(\theta_k)$, and $\theta_k$ follows a \textit{Beta}$(\alpha_k,\beta_k)$, where $\theta_k$ is known but we have $\alpha_k,\beta_k$. Let $a_t$ denote the action selected at time $t$ and $r_t\in\{0,1\}$ denote the corresponding result of action $a_t$. Then we can update the parameters of the \textit{Beta} distribution
-        	\[(\alpha_k,\beta_k)\gets\begin{cases}(\alpha_k,\beta_k) &\text{if } a_t\ne k,\\ (\alpha_k,\beta_k)+(r_t,1-r_t) &\text{if } a_t=k.\end{cases}\]
+    	A naive example for Thompson sampling is for Beta-Bernoulli Bandit. It assumes that the action $k$ being played produces a reward satisfying \textit{Bern}$(\theta_k)$ and $\theta_k$ follows a \textit{Beta}$(\alpha_k,\beta_k)$, where $\theta_k$ is known but we have $\alpha_k,\beta_k$. Let $a_t$ denote the action selected at time $t$ and $r_t\in\{0,1\}$ denote the corresponding result of action $a_t$. Then we can update the parameters of the \textit{Beta} distribution
+    	\[(\alpha_k,\beta_k)\gets\begin{cases}(\alpha_k,\beta_k) &\text{if } a_t\ne k,\\ (\alpha_k,\beta_k)+(r_t,1-r_t) &\text{if } a_t=k.\end{cases}\]
 
-        	\begin{algorithm}[H]
-			\caption{Thompson Sampling}
-			\label{alg: ts}
-			\begin{algorithmic}[1]
-				\State initialize $\alpha_a = |\mathcal{A}|,\beta_a=|\mathcal{A}|, N(a)\gets0,\ \forall a\in\mathcal{A}$;
-				\For {each time slot}:
-				\For {each $a\in\mathcal{A}$}:
-					\State Sample $\hat{Q}(a)$ from $\text{Beta}(\alpha_a,\beta_a)$;
-					\State $N(a)\gets1$;
-				\EndFor
-					\State $a'\gets\arg\max_{a} \left(\hat{Q}(a)+c\cdot\sqrt{\frac{2\log t}{N(a)}}\right)$;
-					\State $r\gets bandit(a')$;
-					\State $N(a')\gets N(a')+1$;
-					\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
-            	\EndFor
-			\end{algorithmic}
-			\end{algorithm}
+    	\begin{algorithm}[H]
+		\caption{Thompson Sampling}
+		\label{alg: ts}
+		\begin{algorithmic}[1]
+			\State initialize $\alpha_a = |\mathcal{A}|,\beta_a=|\mathcal{A}|, N(a)\gets0,\ \forall a\in\mathcal{A}$;
+			\For {each time slot}:
+			\For {each $a\in\mathcal{A}$}:
+				\State Sample $\hat{Q}(a)$ from $\text{Beta}(\alpha_a,\beta_a)$;
+				\State $N(a)\gets1$;
+			\EndFor
+				\State $a'\gets\arg\max_{a} \left(\hat{Q}(a)+c\cdot\sqrt{\frac{2\log t}{N(a)}}\right)$;
+				\State $r\gets bandit(a')$;
+				\State $N(a')\gets N(a')+1$;
+				\State $\hat{Q}(a')\gets \hat{Q}(a')+\frac{1}{N(a')}(r-\hat{Q}(a'))$;
+        	\EndFor
+		\end{algorithmic}
+		\end{algorithm}
 
-        	For the details of how it works one can refer to the idea of \textit{Beta Bernoulli Conjugate}. It exploits the power of Bayesian inference to compute the posterior and finally achieves a probability matching. However, for many practical and complex problems, it can be computationally intractable to estimate the posterior distributions with observed true rewards using Bayesian inference. In that case, we may need to approximate the posterior distributions using methods like Gibbs sampling and Laplace approximate.\\
+    	For the details of how it works one can refer to the idea of \textit{Beta Bernoulli Conjugate}. It exploits the power of Bayesian inference to compute the posterior and finally achieves a probability matching. However, for many practical and complex problems, it can be computationally intractable to estimate the posterior distributions with observed true rewards using Bayesian inference. In that case, we may need to approximate the posterior distributions using methods like Gibbs sampling and Laplace approximate.\\
 
     \subsection{Gradient Bandit Algorithms}
 
-        	Previously our bandit algorithms are based on the estimation of action values. while the gradient bandit algorithm is based on a new criterion.
+    	Previously our bandit algorithms are based on the estimation of action values. while the gradient bandit algorithm is based on a new criterion.
 
-        	\textbf{Gradient Bandit Algorithm}: \textit{Let $H_t(a)$ be a learned preference for taking action $a$, then we have the rules}
-        	\[P(A_t=a)=\frac{e^{H_t(a)}}{\sum_{b=1}^k e^{H_t(b)}}=\pi_t(a),\]
-        	\textit{and}
-        	\[H_{t+1}(a)=H_t(a)+\alpha(r_t-\bar{r_t})[I(A_t=a)-\pi_t(a)],\]
-        	\textit{where }$\bar{r_t}=\frac{1}{t}\sum_{i=1}^t r_i$ \textit{ and the learning rate $\alpha>0$}.
+    	\textbf{Gradient Bandit Algorithm}: \textit{Let $H_t(a)$ be a learned preference for taking action $a$, then we have the rules}
+    	\[P(A_t=a)=\frac{e^{H_t(a)}}{\sum_{b=1}^k e^{H_t(b)}}=\pi_t(a),\]
+    	\textit{and}
+    	\[H_{t+1}(a)=H_t(a)+\alpha(r_t-\bar{r_t})[I(A_t=a)-\pi_t(a)],\]
+    	\textit{where }$\bar{r_t}=\frac{1}{t}\sum_{i=1}^t r_i$ \textit{ and the learning rate $\alpha>0$}.
 
-        	The algorithm is also known as \textit{stochastic gradient ascent algorithm} since the term $(r_t-\bar{r_t})[I(A_t=a)-\pi_t(a)]$ is essentially the stochastic gradient of $\mathbb{E}[r_t]$ with respect to $H_t(a)$.
+    	The algorithm is also known as \textit{stochastic gradient ascent algorithm} since the term $(r_t-\bar{r_t})[I(A_t=a)-\pi_t(a)]$ is essentially the stochastic gradient of $\mathbb{E}[r_t]$ with respect to $H_t(a)$.
 
-        	\begin{algorithm}[H]
-			\caption{Gradient Bandit}
-			\label{alg: gb}
-			\begin{algorithmic}[1]
-				\State initialize $R=0, H(a)=0,\ \forall a\in\mathcal{A}$;
-				\For {each time slot $t$}:
-				\For {each $a\in\mathcal{A}$}:
-					\State $\pi(a) = \frac{H(a)}{\sum_{a'} H(a')}$;
-				\EndFor
-				\State Sample action $a'$ from $\pi$;
-				\State $r\gets bandit(a')$;
-				\For {each $a\in\mathcal{A}$}:
-					\State $H(a) = H(a) + \alpha(r-R)[I(a'=a)-\pi(a)]$;
-					\State $R\gets \frac{1}{t}[(t-1)R+r]$;
-            	\EndFor
-            	\EndFor
-			\end{algorithmic}
-			\end{algorithm}
+    	\begin{algorithm}[H]
+		\caption{Gradient Bandit}
+		\label{alg: gb}
+		\begin{algorithmic}[1]
+			\State initialize $R=0, H(a)=0,\ \forall a\in\mathcal{A}$;
+			\For {each time slot $t$}:
+			\For {each $a\in\mathcal{A}$}:
+				\State $\pi(a) = \frac{H(a)}{\sum_{a'} H(a')}$;
+			\EndFor
+			\State Sample action $a'$ from $\pi$;
+			\State $r\gets bandit(a')$;
+			\For {each $a\in\mathcal{A}$}:
+				\State $H(a) = H(a) + \alpha(r-R)[I(a'=a)-\pi(a)]$;
+				\State $R\gets \frac{1}{t}[(t-1)R+r]$;
+        	\EndFor
+        	\EndFor
+		\end{algorithmic}
+		\end{algorithm}
 
-        	Actually, gradient bandit algorithm has a bad performance when compared with other algorithms. However, the introduction of the gradient and the function, inspire many policy gradient based algorithms in Reinforcement Learning.
+    	Actually, gradient bandit algorithm has a bad performance when compared with other algorithms. However, the introduction of the gradient and the function inspires many policy gradient based algorithms in Reinforcement Learning.
 
-        	\pagebreak
+    	\pagebreak
 
 \pagebreak
 
@@ -724,93 +722,93 @@
 
 	\subsection{Markov Model}
 
-			\textbf{Stochastic Processes}: \textit{A stochastic process is a collection, or, a sequence of random variables $\{X_t,t\in \mathcal{T}\}$. The set $\mathcal{T}$ is the index set of the process. All the \textit{r.v.}s are defined on a common state space $\mathcal{S}$}.\\
-			
-			\textbf{Markov Property}: \textit{Given a stochastic process $X_0, X_1, X_2, ..., X_n$ taking values in the state space $\mathcal{S}$, the future evolution of the process is independent of the past evolution of the process, i.e.,}
-			\[P(X_{n+1}=j|X_n=i_n,X_{n-1}=i_{n-1},...,X_0=i_0)=P(X_{n+1}=j|X_n=i_n).\]
-
-			The above equation holds for the first order Markov property. For the second order Markov property we have $P(X_{n+1}|X_n, ...,X_0)=P(X_{n+1}|X_n,X_{n-1})$, \textit{etc}. With Markov property, many calculation tasks can be simplified greatly.\\
+		\textbf{Stochastic Processes}: \textit{A stochastic process is a collection, or, a sequence of random variables $\{X_t,t\in \mathcal{T}\}$. The set $\mathcal{T}$ is the index set of the process. All the \textit{r.v.}s are defined on a common state space $\mathcal{S}$}.\\
 		
-			\textbf{Markov Chain/Process}: \textit{A sequence of random variables $X_0, X_1, X_2, ...$ taking values in the state space $\mathcal{S}$ is called a Markov chain if it has Markov property. A Markov process is the continuous-time version of a Markov Chain.}\\
+		\textbf{Markov Property}: \textit{Given a stochastic process $X_0, X_1, X_2, ..., X_n$ taking values in the state space $\mathcal{S}$, the future evolution of the process is independent of the past evolution of the process, i.e.,}
+		\[P(X_{n+1}=j|X_n=i_n,X_{n-1}=i_{n-1},...,X_0=i_0)=P(X_{n+1}=j|X_n=i_n).\]
 
-			\textbf{Transition Matrix}: \textit{For a Markov Chain, let $q_{ij}=P(X_{n+1}=j|X_n=i)$ be the transition probability from state $i$ to state $j$. Then the matrix $Q$ is called the transition matrix of the chain.}
+		The above equation holds for the first order Markov property. For the second order Markov property we have $P(X_{n+1}|X_n, ...,X_0)=P(X_{n+1}|X_n,X_{n-1})$, \textit{etc}. With Markov property, many calculation tasks can be simplified greatly.\\
+	
+		\textbf{Markov Chain/Process}: \textit{A sequence of random variables $X_0, X_1, X_2, ...$ taking values in the state space $\mathcal{S}$ is called a Markov chain if it has Markov property. A Markov process is the continuous-time version of a Markov Chain.}\\
 
-			Transition Matrix is a common way to express a Markov chain. Besides that, Markov chain can be represented in a graphical form.\\
+		\textbf{Transition Matrix}: \textit{For a Markov Chain, let $q_{ij}=P(X_{n+1}=j|X_n=i)$ be the transition probability from state $i$ to state $j$. Then the matrix $Q$ is called the transition matrix of the chain.}
+
+		Transition Matrix is a common way to express a Markov chain. Besides that, Markov chain can be represented in a graphical form.\\
 
 	\subsection{Basic Computations}
 
-			With a little abuse of notation, I would use $Q$ to denote the transition matrix when we talk about Markov chain, and $q^n_{i,j}$ to denote the entry $(Q^n)_{i,j}$. Now we introduce some useful computations.\\
+		With a little abuse of notation, I would use $Q$ to denote the transition matrix when we talk about Markov chain, and $q^n_{i,j}$ to denote the entry $(Q^n)_{i,j}$. Now we introduce some useful computations.\\
 
-			\textbf{$n$-step Transition Probability}: \textit{For a Markov chain, the $n$-step transition probability from $i$ to $j$ is the probability of being at $j$ exactly $n$ steps after being at $i$, and}
-			\[P(X_{n+m}=j|X_m=i)=q^n_{i,j}.\]
+		\textbf{$n$-step Transition Probability}: \textit{For a Markov chain, the $n$-step transition probability from $i$ to $j$ is the probability of being at $j$ exactly $n$ steps after being at $i$, and}
+		\[P(X_{n+m}=j|X_m=i)=q^n_{i,j}.\]
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			For a Markov chain, the states are time-homogeneous. Thus we have 
-			\[P(X_{n+m}=j|X_m=i)=P(X_n=j|X_o=i).\]
-			Hence it follows that
-			\begin{align*}
-			P(X_n=j|X_0=i)&=\sum_k P(X_n=j, X_{n-1}=k | X_0=i )\tag{by LOTP}\\
-			&=\sum_k P(X_n=j|X_{n-1}=k, X_0=i)P(X_{n-1}=k|X_0=i)\\
-			&=\sum_k q_{k,j}P(X_{n-1}=k|X_0=i),\tag{by Markov Property}
-			\end{align*}
-			then by \textit{induction} from 2 to $n-1$, we have
-			\[P(X_{n+m}=j|X_m=i)=q^n_{i,j}.\]
-			\qed
+		For a Markov chain, the states are time-homogeneous. Thus we have 
+		\[P(X_{n+m}=j|X_m=i)=P(X_n=j|X_o=i).\]
+		Hence it follows that
+		\begin{align*}
+		P(X_n=j|X_0=i)&=\sum_k P(X_n=j, X_{n-1}=k | X_0=i )\tag{by LOTP}\\
+		&=\sum_k P(X_n=j|X_{n-1}=k, X_0=i)P(X_{n-1}=k|X_0=i)\\
+		&=\sum_k q_{k,j}P(X_{n-1}=k|X_0=i),\tag{by Markov Property}
+		\end{align*}
+		then by \textit{induction} from 2 to $n-1$, we have
+		\[P(X_{n+m}=j|X_m=i)=q^n_{i,j}.\]
+		\qed
 
-			With $n$-step transition probability, we have the \textit{Chapman-Kolmogorov Equation}.
+		With $n$-step transition probability, we have the \textit{Chapman-Kolmogorov Equation}.
 
-			\textbf{Chapman-Kolmogorov Equation}: \textit{For $m,n\ge 0$, we have}
-			\[P(X_{m+n}=j|X_0=i)=\sum_k P(X_m=k|X_0=i)P(X_n=j|X_0=k).\]
+		\textbf{Chapman-Kolmogorov Equation}: \textit{For $m,n\ge 0$, we have}
+		\[P(X_{m+n}=j|X_0=i)=\sum_k P(X_m=k|X_0=i)P(X_n=j|X_0=k).\]
 
-			The equation can be proved by matrix identity that $q^{m+n}_{i,j}=\sum_{k}q^m_{i,k}q^n_{k,j}$. By the equation, for a Markov chain with transition matrix $P$, the Markov property can be generalized to
-			\[P(X_{n+1}=j|X_{n-m}=i, X_{n-m-1}=i_{n-m-1}, ..., X_0=i_0)=P(X_{n+1}=j|X_{n-m}=i)=q^{m+1}_{i,j}\]
-			for $m<n$ and $m\ge0$.\\
+		The equation can be proved by matrix identity that $q^{m+n}_{i,j}=\sum_{k}q^m_{i,k}q^n_{k,j}$. By the equation, for a Markov chain with transition matrix $P$, the Markov property can be generalized to
+		\[P(X_{n+1}=j|X_{n-m}=i, X_{n-m-1}=i_{n-m-1}, ..., X_0=i_0)=P(X_{n+1}=j|X_{n-m}=i)=q^{m+1}_{i,j}\]
+		for $m<n$ and $m\ge0$.\\
 
 	\subsection{Classifications}
 
-			Depending on whether they are visited over and over again in the long run or are eventually abandoned, the states of a Markov chain can be classified as recurrent or transient.
+		Depending on whether they are visited over and over again in the long run or are eventually abandoned, the states of a Markov chain can be classified as recurrent or transient.
 
-			\textbf{Recurrent and Transient states}: \textit{State $i$ of a Markov chain is recurrent if starting from $i$, the chain can always return to $i$. Otherwise, the state is transient, which means that if the chain starts from $i$, there is a positive probability of never returning to $i$.}\\
+		\textbf{Recurrent and Transient states}: \textit{State $i$ of a Markov chain is recurrent if starting from $i$, the chain can always return to $i$. Otherwise, the state is transient, which means that if the chain starts from $i$, there is a positive probability of never returning to $i$.}\\
 
-			\textbf{Irreducible and Reducible Chain}: \textit{A Markov chain with transition matrix $Q$ is irreducible if for any two sates $i$ and $j$, it is possible to go from $i$ to $j$ in a finite number of steps (with positive probability). That is, for any states $i,j$ there is some positive integer $n$ such that the $(i,j)$ entry of $Q^{n}$ is positive. A Markov chain that is not irreducible is called reducible.}
+		\textbf{Irreducible and Reducible Chain}: \textit{A Markov chain with transition matrix $Q$ is irreducible if for any two sates $i$ and $j$, it is possible to go from $i$ to $j$ in a finite number of steps (with positive probability). That is, for any states $i,j$ there is some positive integer $n$ such that the $(i,j)$ entry of $Q^{n}$ is positive. A Markov chain that is not irreducible is called reducible.}
 
-			In an irreducible Markov chain with a finite state space, all states are recurrent.\\
+		In an irreducible Markov chain with a finite state space, all states are recurrent.\\
 
-			\textbf{Period}: \textit{For a Markov chain with transition matrix $Q$, the period of state $i$, denoted $d(i)$, is the greatest common divisor of the set of possible return times to $i$. That is,}
-			\[d(i)=\text{gcd}\{n>0\ |\ q_{i,i}^{n}>0\}.\]
-			\textit{If $d(i)=1$, state $i$ is said to be aperiodic. If the set of return times is empty, set $d(i)=+\infty$.}\\
+		\textbf{Period}: \textit{For a Markov chain with transition matrix $Q$, the period of state $i$, denoted $d(i)$, is the greatest common divisor of the set of possible return times to $i$. That is,}
+		\[d(i)=\text{gcd}\{n>0\ |\ q_{i,i}^{n}>0\}.\]
+		\textit{If $d(i)=1$, state $i$ is said to be aperiodic. If the set of return times is empty, set $d(i)=+\infty$.}\\
 
 	\subsection{Stationary Distribution}
 
-			\textbf{Stationary Distribution}: \textit{A row vector $\mathbf{s}=(s_1,...,s_M)$ such that $\sum_i s_i=1$ is a stationary distribution for a Markov chain with transition matrix $Q$ if}
-			\[\sum_i s_i q_{i,j}=s_j\]
-			\textit{for all $j$.}
+		\textbf{Stationary Distribution}: \textit{A row vector $\mathbf{s}=(s_1,...,s_M)$ such that $\sum_i s_i=1$ is a stationary distribution for a Markov chain with transition matrix $Q$ if}
+		\[\sum_i s_i q_{i,j}=s_j\]
+		\textit{for all $j$.}
 
-			Any irreducible Markov chain has a unique stationary distribution.\\
+		Any irreducible Markov chain has a unique stationary distribution.\\
 
-			\textbf{Doubly Stochastic Matrix}: \textit{A nonnegative matrix such that the row sums and the column sums are all equal to 1 is called a doubly stochastic matrix.}
+		\textbf{Doubly Stochastic Matrix}: \textit{A nonnegative matrix such that the row sums and the column sums are all equal to 1 is called a doubly stochastic matrix.}
 
-			If the transition matrix $Q$ of a Markov chain is a doubly stochastic matrix, then the uniform distribution over all states, $(1/M,1/M,...,1/M), M=|\mathcal{S}|$, is a stationary distribution of the chain.\\
+		If the transition matrix $Q$ of a Markov chain is a doubly stochastic matrix, then the uniform distribution over all states, $(1/M,1/M,...,1/M), M=|\mathcal{S}|$, is a stationary distribution of the chain.\\
 
-			\textbf{Convergence to Stationary Distribution}: \textit{Let $X_0, X_1, ...$ be a Markov chain with stationary distribution $\mathbf{s}$ and transition matrix $Q$, such that some power $Q^m$ is positive in all entries. (These assumptions are equivalent to assuming that the chain is irreducible and aperiodic.) Then $P(X_n = i)$ converges to $s_i$ as $n\to \infty$. In terms of the transition matrix, $Q^n$ converges to a matrix in which each row is $\mathbf{s}$.}\\
+		\textbf{Convergence to Stationary Distribution}: \textit{Let $X_0, X_1, ...$ be a Markov chain with stationary distribution $\mathbf{s}$ and transition matrix $Q$, such that some power $Q^m$ is positive in all entries. (These assumptions are equivalent to assuming that the chain is irreducible and aperiodic.) Then $P(X_n = i)$ converges to $s_i$ as $n\to \infty$. In terms of the transition matrix, $Q^n$ converges to a matrix in which each row is $\mathbf{s}$.}\\
 
-			\textbf{Ergodic Markov chain}: \textit{A Markov chain is called ergodic if it is irreducible, aperiodic, and all states have finite expected return times (positive recurrent).}
+		\textbf{Ergodic Markov chain}: \textit{A Markov chain is called ergodic if it is irreducible, aperiodic, and all states have finite expected return times (positive recurrent).}
 
-			For an ergodic Markov chain $X_0,X_1,...$, there exists a unique stationary distribution $\pi$, which is the limiting distribution of the chain. That is
-			\[\pi_j=\lim_{n\to\infty} q_{i,j}^n,\ \forall i,j.\]\
+		For an ergodic Markov chain $X_0,X_1,...$, there exists a unique stationary distribution $\pi$, which is the limiting distribution of the chain. That is
+		\[\pi_j=\lim_{n\to\infty} q_{i,j}^n,\ \forall i,j.\]\
 		
 	\subsection{Reversibility}
 
-			\textbf{Reversibility}: \textit{Let $Q$ be the transition matrix of a Markov chain. Suppose there is $\mathbf{s} = (s_1,...,s_M)$ with $s_i\ge0,\sum_i s_i=1$, such that}
-			\[s_iq_{i,j}=s_jq_{j,i}\]
-			\textit{for all pairs of states $i$ and $j$.}
+		\textbf{Reversibility}: \textit{Let $Q$ be the transition matrix of a Markov chain. Suppose there is $\mathbf{s} = (s_1,...,s_M)$ with $s_i\ge0,\sum_i s_i=1$, such that}
+		\[s_iq_{i,j}=s_jq_{j,i}\]
+		\textit{for all pairs of states $i$ and $j$.}
 
-			This equation is called the reversibility or detailed balance condition. We say that the chain is reversible with respect to $\mathbf{s}$ if it holds, and such $\mathbf{s}$ is a stationary distribution of the chain.\\
+		This equation is called the reversibility or detailed balance condition. We say that the chain is reversible with respect to $\mathbf{s}$ if it holds, and such $\mathbf{s}$ is a stationary distribution of the chain.\\
 
-			\textbf{Detailed Balance Equation}: \textit{If for an irreducible Markov chain with transition matrix $Q$, there exists a probability solution $\pi$ to the detailed balance equations}
-			\[\pi_i q_{i,j}=\pi_j q_{j,i}\]
-			\textit{for all pairs of states $i$ and $j$, then this Markov chain is positive recurrent, time-reversible and the solution $\pi$ is the unique stationary distribution.}\\
+		\textbf{Detailed Balance Equation}: \textit{If for an irreducible Markov chain with transition matrix $Q$, there exists a probability solution $\pi$ to the detailed balance equations}
+		\[\pi_i q_{i,j}=\pi_j q_{j,i}\]
+		\textit{for all pairs of states $i$ and $j$, then this Markov chain is positive recurrent, time-reversible and the solution $\pi$ is the unique stationary distribution.}\\
 
 	\subsection{Markov Chain Monte Carlo}
 
@@ -845,7 +843,7 @@
 
 		\textbf{Gibbs Sampler}: Gibbs sampling is an MCMC algorithm for obtaining approximate draws from a joint distribution, based on sampling from conditional distributions one at a time: at each stage, one variable is updated (keeping all the other variables fixed) by drawing from the conditional distribution of that variable given all the other variables.
 
-		\textbf{Gibbs sampler}: \textit{Let $X$ and $Y$ be discrete r.v.s with joint PMF $p_{X,Y} (x,y) = P(X = x,Y = y)$. We wish to construct a two-dimensional Markov chain $(X_n, Y_n)$ whose stationary distribution is $p_{X,Y}$. The systematic scan Gibbs sampler proceeds by updating the $X$-component and the $Y$-component in alternation. If the current state is $(X_n,Y_n) = (x_n,y_n)$, then we update the $X$-component while holding the $Y$-component fixed, and then update the $Y$ -component while holding the $X$-component fixed.}
+		\textbf{Gibbs Sampling Algorithm}: \textit{Let $X$ and $Y$ be discrete r.v.s with joint PMF $p_{X,Y} (x,y) = P(X = x,Y = y)$. We wish to construct a two-dimensional Markov chain $(X_n, Y_n)$ whose stationary distribution is $p_{X,Y}$. The systematic scan Gibbs sampler proceeds by updating the $X$-component and the $Y$-component in alternation. If the current state is $(X_n,Y_n) = (x_n,y_n)$, then we update the $X$-component while holding the $Y$-component fixed, and then update the $Y$ -component while holding the $X$-component fixed.}
 
 		\begin{algorithm}[H]
 		\caption{Gibbs Sampling}
@@ -888,7 +886,7 @@
 		\textbf{Value Function}: \textit{The state value function $v(s)$ of an MRP is the expected return starting from state $s$}
 		\[v(s)=\mathbb{E}[G_t|S_t=s].\]\
 
-		\textbf{Bellman Equation for MRPs}: \textit{The value function $v(s_t)$ can be decomposed into two parts: the immediate reward $R_{t+1}$ and the discounted value of successor state, which is}
+		\textbf{Bellman Equation for MRPs}: \textit{The value function $v(s_t)$ can be decomposed into two parts: the immediate reward $R_{t+1}$ and the discounted value of the successor state, which is}
 		\[v(s)=\mathbb{E}[R_{t+1}+\gamma v(S_{t+1})|S_t=s].\]
 
 		\textit{Proof:} 
@@ -990,174 +988,174 @@
 
 	\subsubsection{Policy Evaluation}
 
-			\textbf{Bellman expectation backup}: \textit{Given a policy $\pi$, at each iteration $k+1$, for all states $s\in \mathcal{S}$, update $v_{k+1}(s)$ from $v_k(s')$ by}
-			\[v_{k+1}(s)=\sum_{a\in\mathcal{A}}\pi(a|s)\left(R_s^a+\gamma\sum_{s'\in\mathcal{S}}\mathcal{P}_{ss'}^a v_k(s')\right).\]
+		\textbf{Bellman expectation backup}: \textit{Given a policy $\pi$, at each iteration $k+1$, for all states $s\in \mathcal{S}$, update $v_{k+1}(s)$ from $v_k(s')$ by}
+		\[v_{k+1}(s)=\sum_{a\in\mathcal{A}}\pi(a|s)\left(R_s^a+\gamma\sum_{s'\in\mathcal{S}}\mathcal{P}_{ss'}^a v_k(s')\right).\]
 
-			Clearly, $v_k = v^\pi$ is a fixed point for this update rule because the Bellman equation for $v^\pi$ assures us of equality in this case. Indeed, the sequence $\{v_k\}$ can be shown in general to converge to $v^\pi$ as $k\to\infty$ under the same conditions that guarantee the existence of $v^\pi$. This algorithm is called iterative policy evaluation.\\
+		Clearly, $v_k = v^\pi$ is a fixed point for this update rule because the Bellman equation for $v^\pi$ assures us of equality in this case. Indeed, the sequence $\{v_k\}$ can be shown in general to converge to $v^\pi$ as $k\to\infty$ under the same conditions that guarantee the existence of $v^\pi$. This algorithm is called iterative policy evaluation.\\
 
-			\begin{algorithm}[H]
-			\caption{Iterative Policy Evaluation}
-			\label{alg: Iterative Policy Evaluation}
-			\begin{algorithmic}[1]
-				\State initialize $v(s)$ arbitrarily for $s\in\mathcal{S}$ except that $v(terminal)=0$;
-				\State \textbf{input} the policy $\pi$ to be evaluated; the threshold $\theta>0$ determining the accuracy of the evaluation; 
+		\begin{algorithm}[H]
+		\caption{Iterative Policy Evaluation}
+		\label{alg: Iterative Policy Evaluation}
+		\begin{algorithmic}[1]
+			\State initialize $v(s)$ arbitrarily for $s\in\mathcal{S}$ except that $v(terminal)=0$;
+			\State \textbf{input} the policy $\pi$ to be evaluated; the threshold $\theta>0$ determining the accuracy of the evaluation; 
 
-				\For {true}:
-					\State $\Delta\gets 0$;
-					\For {each $s\in\mathcal{S}$}:
-						\State $old\gets v(s)$;
-						\State $v(s)\gets\sum_{a}\pi(a|s)\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
-						\State $\Delta\gets\max(\Delta,|old-v(s)|)$;
-					\EndFor
-					\If {$\Delta<\theta$}:
-						\State break;
-					\EndIf
-            	\EndFor
-			\end{algorithmic}
-			\end{algorithm}
+			\For {true}:
+				\State $\Delta\gets 0$;
+				\For {each $s\in\mathcal{S}$}:
+					\State $old\gets v(s)$;
+					\State $v(s)\gets\sum_{a}\pi(a|s)\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
+					\State $\Delta\gets\max(\Delta,|old-v(s)|)$;
+				\EndFor
+				\If {$\Delta<\theta$}:
+					\State break;
+				\EndIf
+        	\EndFor
+		\end{algorithmic}
+		\end{algorithm}
 
-            Formally, iterative policy evaluation converges only in the limit, but in practice it is better to be halted short of this.\\
+        Formally, iterative policy evaluation converges only in the limit, but in practice it is better to be halted short of this.\\
 
 	\subsubsection{Policy Iteration}
-			\label{sec: PI}
+		\label{sec: PI}
 
-			For a deterministic policy $a =\pi(s)$, we can iteratively improve it through the two steps:
-			\begin{itemize}[noitemsep,topsep=0pt]
-				\item Evaluate the policy $\pi$ so that get the value function;
-				\item Improve the policy by acting greedily for all $s\in\mathcal{S}$ with respect to the value function:
-				\[\pi'(s)=\arg\max_{a}q^\pi(s,a).\]
-			\end{itemize}
+		For a deterministic policy $a =\pi(s)$, we can iteratively improve it through the two steps:
+		\begin{itemize}[noitemsep,topsep=0pt]
+			\item Evaluate the policy $\pi$ so that get the value function;
+			\item Improve the policy by acting greedily for all $s\in\mathcal{S}$ with respect to the value function:
+			\[\pi'(s)=\arg\max_{a}q^\pi(s,a).\]
+		\end{itemize}
 
-			\textit{Proof}:
+		\textit{Proof}:
 
-			Now we show that such improvement does give us a better policy.
-			\begin{align*}
-			v^\pi(s)&\le \max_{a}q^\pi(s,a)\\
-			&=q^{\pi'}(s,\pi'(s))\\
-			&=E_{\pi'}[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=t]\\
-			&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma q^{\pi'}(S_{t+1},\pi'(S_{t+1}))|S_t=t]\\
-			&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma R_{t+2}+\gamma^2q^{\pi'}(S_{t+2},\pi'(S_{t+2}))|S_t=s]\tag{1}\\
-			&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma R_{t+2}+...|S_t=s]\\
-			&=v^{\pi'}(s).
-			\end{align*}
+		Now we show that such improvement does give us a better policy.
+		\begin{align*}
+		v^\pi(s)&\le \max_{a}q^\pi(s,a)\\
+		&=q^{\pi'}(s,\pi'(s))\\
+		&=E_{\pi'}[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=t]\\
+		&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma q^{\pi'}(S_{t+1},\pi'(S_{t+1}))|S_t=t]\\
+		&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma R_{t+2}+\gamma^2q^{\pi'}(S_{t+2},\pi'(S_{t+2}))|S_t=s]\tag{1}\\
+		&\le \mathbb{E}_{\pi'}[R_{t+1}+\gamma R_{t+2}+...|S_t=s]\\
+		&=v^{\pi'}(s).
+		\end{align*}
 
-			The step (1) can be derived by Adam's law with extra conditioning and Markov theory.
-			\qed\\
+		The step (1) can be derived by Adam's law with extra conditioning and Markov theory.
+		\qed\\
 
-			When the improvement converges, we have
-			\[q^\pi(s,\pi'(s))=\max_{a} q^\pi(s,a)=q^\pi(s,\pi(s))=v^\pi(s),\]
-			which gives us the optimal policy.\\
+		When the improvement converges, we have
+		\[q^\pi(s,\pi'(s))=\max_{a} q^\pi(s,a)=q^\pi(s,\pi(s))=v^\pi(s),\]
+		which gives us the optimal policy.\\
 
-			\begin{algorithm}[H]
-			\caption{Policy Iteration}
-			\label{alg: Policy Iteration}
-			\begin{algorithmic}[1]
-            \State initialize a policy $\pi(s)\in\mathcal{A}$ arbitrarily for all $s\in\mathcal{S}$;
+		\begin{algorithm}[H]
+		\caption{Policy Iteration}
+		\label{alg: Policy Iteration}
+		\begin{algorithmic}[1]
+        \State initialize a policy $\pi(s)\in\mathcal{A}$ arbitrarily for all $s\in\mathcal{S}$;
 
-            \For {true}:
-				\State $v\gets$Policy Evaluation for $\pi$;
-            	\State $stable\gets$ true;
+        \For {true}:
+			\State $v\gets$Policy Evaluation for $\pi$;
+        	\State $stable\gets$ true;
 
-            	\For {each $s\in\mathcal{S}$}:
-            		\State $old\gets \pi(s)$;
-            		\State $\pi(s)\gets\arg\max_{a}\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
-            		
-            		\If {$old\ne\pi(s)$}:
-	            		\State $stable\gets$false;
-	            	\EndIf
-	            \EndFor
+        	\For {each $s\in\mathcal{S}$}:
+        		\State $old\gets \pi(s)$;
+        		\State $\pi(s)\gets\arg\max_{a}\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
+        		
+        		\If {$old\ne\pi(s)$}:
+            		\State $stable\gets$false;
+            	\EndIf
+            \EndFor
 
 
-	            \If {$stable$}:
-	            	\State Return $\pi$\;
-	            \EndIf
-	        \EndFor
-	        \end{algorithmic}
-            \end{algorithm}
+            \If {$stable$}:
+            	\State Return $\pi$\;
+            \EndIf
+        \EndFor
+        \end{algorithmic}
+        \end{algorithm}
 
-            It should be noticed that here we are talking about deterministic policy. For stochastic policy, expectation should be introduced.\\
+        It should be noticed that here we are talking about deterministic policy. For stochastic policy, expectation should be introduced.\\
 
-			\textbf{Generalized Policy Iteration}(GPI): \textit{The combination of policy evaluation and policy improvement is called generalized policy iteration.}
+		\textbf{Generalized Policy Iteration}(GPI): \textit{The combination of policy evaluation and policy improvement is called generalized policy iteration.}
 
-			In GPI one maintains both an approximate policy and an approximate value function. The value function is repeatedly altered to more closely approximate the value function for the current policy, and the policy is repeatedly improved with respect to the current value function. These two kinds of changes work against each other to some extent, as each creates a moving target for the other, but together they cause both policy and value function to approach optimality.\\
+		In GPI one maintains both an approximate policy and an approximate value function. The value function is repeatedly altered to more closely approximate the value function for the current policy, and the policy is repeatedly improved with respect to the current value function. These two kinds of changes work against each other to some extent, as each creates a moving target for the other, but together they cause both policy and value function to approach optimality.\\
 
-			%GPI is also the basic idea of Actor-Critic.
+		%GPI is also the basic idea of Actor-Critic.
 
 	\subsubsection{Value Iteration}
 
-			One drawback to policy iteration is that each of its iterations involves policy evaluation, which may itself be a protracted iterative computation requiring multiple sweeps through the state set. After the value function converges, the change of the policy will lead to a new round evaluation.
+		One drawback to policy iteration is that each of its iterations involves policy evaluation, which may itself be a protracted iterative computation requiring multiple sweeps through the state set. After the value function converges, the change of the policy will lead to a new round evaluation.
 
-			In fact, the policy evaluation step of policy iteration can be truncated in several ways without losing the convergence guarantees of policy iteration. One important special case is when policy evaluation is stopped after just one sweep (one update of each state). This algorithm is called \textit{value iteration}. It can be written as a particularly simple update operation that combines the policy improvement and truncated policy evaluation steps.
+		In fact, the policy evaluation step of policy iteration can be truncated in several ways without losing the convergence guarantees of policy iteration. One important special case is when policy evaluation is stopped after just one sweep (one update of each state). This algorithm is called \textit{value iteration}. It can be written as a particularly simple update operation that combines the policy improvement and truncated policy evaluation steps.
 
-			\begin{algorithm}[H]
-			\caption{Value Iteration}
-			\label{alg: Value Iteration}
-			\begin{algorithmic}[1]
-			\State initialize $v(s)$ arbitrarily for $s\in\mathcal{S}$ except that $v(terminal)=0$;
-            \State \textbf{input} the threshold $\theta>0$ determining the accuracy of the evaluation; 
-            
-            \For {true}:
-            	\State $\Delta\gets 0$;
-            	\For {each $s\in\mathcal{S}$}:
-            		\State $old\gets v(s)$;
-            		\State $v(s)\gets\max_{a}\pi(a|s)\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
-            		\State $\Delta\gets\max(\Delta,|old-v(s)|)$;
-            	\EndFor
+		\begin{algorithm}[H]
+		\caption{Value Iteration}
+		\label{alg: Value Iteration}
+		\begin{algorithmic}[1]
+		\State initialize $v(s)$ arbitrarily for $s\in\mathcal{S}$ except that $v(terminal)=0$;
+        \State \textbf{input} the threshold $\theta>0$ determining the accuracy of the evaluation; 
+        
+        \For {true}:
+        	\State $\Delta\gets 0$;
+        	\For {each $s\in\mathcal{S}$}:
+        		\State $old\gets v(s)$;
+        		\State $v(s)\gets\max_{a}\pi(a|s)\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
+        		\State $\Delta\gets\max(\Delta,|old-v(s)|)$;
+        	\EndFor
 
-            	\If {$\Delta<\theta$}:
-            	\State break;
-            	\EndIf
-            \EndFor
-            \State \textbf{return} $\pi(s)=\arg\max_a\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
-            \end{algorithmic}
-            \end{algorithm}
+        	\If {$\Delta<\theta$}:
+        	\State break;
+        	\EndIf
+        \EndFor
+        \State \textbf{return} $\pi(s)=\arg\max_a\sum_{s'}\mathcal{P}_{ss'}^a[R_s^a+\gamma v(s')]$;
+        \end{algorithmic}
+        \end{algorithm}
 
-            We can tell that value iteration is different from policy evaluation in how we update $v(s)$. The update rule in value iteration follows \textit{Bellman optimality equation}.\\
+        We can tell that value iteration is different from policy evaluation in how we update $v(s)$. The update rule in value iteration follows \textit{Bellman optimality equation}.\\
 
-			\textbf{Bellman Optimality Equation}: \textit{The optimal value functions are reached by the Bellman optimality equations}:
-			\[v^{*}(s)=\max _{a} R_s^a+\gamma \sum_{s^{\prime} \in S} P\left(s^{\prime} | s, a\right) v^{*}\left(s^{\prime}\right).\]\
+		\textbf{Bellman Optimality Equation}: \textit{The optimal value functions are reached by the Bellman optimality equations}:
+		\[v^{*}(s)=\max _{a} R_s^a+\gamma \sum_{s^{\prime} \in S} P\left(s^{\prime} | s, a\right) v^{*}\left(s^{\prime}\right).\]\
 
-			The derivation of the equation is simple. According to the optimal policy, we know
-			\[v^{*}(s)=\max_a q^{*}(s, a)\tag{1}.\]
-			Then from the definition of $q(s,a)$,
-			\[q^{*}(s, a)=R_s^a+\gamma \sum_{s^{\prime} \in S} P\left(s^{\prime} | s, a\right) v^{*}\left(s^{\prime}\right).\tag{2}\]
-			Therefore we can get the Bellman optimality equation by plugging (2) into (1).\\
+		The derivation of the equation is simple. According to the optimal policy, we know
+		\[v^{*}(s)=\max_a q^{*}(s, a)\tag{1}.\]
+		Then from the definition of $q(s,a)$,
+		\[q^{*}(s, a)=R_s^a+\gamma \sum_{s^{\prime} \in S} P\left(s^{\prime} | s, a\right) v^{*}\left(s^{\prime}\right).\tag{2}\]
+		Therefore we can get the Bellman optimality equation by plugging (2) into (1).\\
 
 	\subsubsection{Comparison}
-			The comparison of the two methods are shown as follows.\\
+		The comparison of the two methods are shown as follows.\\
 
-			\textit{Policy Iteration}: policy evaluation + policy improvement
-			\begin{itemize}[noitemsep,topsep=0pt]
-			\item starts from an arbitrarily policy and then estimates the \textit{state value} given the policy;
-			\item generates a new policy given the estimated state value;
-			\item converges faster in terms of the number of iterations since it doing a lot more work in each iteration.\\
-	 		\end{itemize}
+		\textit{Policy Iteration}: policy evaluation + policy improvement
+		\begin{itemize}[noitemsep,topsep=0pt]
+		\item starts from an arbitrarily policy and then estimates the \textit{state value} given the policy;
+		\item generates a new policy given the estimated state value;
+		\item converges faster in terms of the number of iterations since it doing a lot more work in each iteration.\\
+ 		\end{itemize}
 
-			\textit{Value Iteration}: optimal value function + one policy extraction
-			\begin{itemize}[noitemsep,topsep=0pt]
-				\item updates the value \textit{greedily} (does not care the policy) at each iteration and then, \textit{after} finding the optimal value function, determines a new policy given the optimal value function;
-	  			\item convergences fast per iteration, but may be far from the true value function.\\
-			\end{itemize}
+		\textit{Value Iteration}: optimal value function + one policy extraction
+		\begin{itemize}[noitemsep,topsep=0pt]
+			\item updates the value \textit{greedily} (does not care the policy) at each iteration and then, \textit{after} finding the optimal value function, determines a new policy given the optimal value function;
+  			\item convergences fast per iteration, but may be far from the true value function.\\
+		\end{itemize}
 
-			The summary for evaluation and control in MDP by dynamic programming is shown in Table~\ref{dp_comp}.
-		
-			% Please add the following required packages to your document preamble:
-			% \usepackage{multirow}
-			\begin{table}[H]
-			\centering
-			\begin{tabular}{|c|c|c|c|}
-			\hline
-			Problem                     & \multicolumn{2}{c|}{Bellman Equation} & Algorithm                          \\ \hline
-			\multirow{2}{*}{Prediction} & \multirow{2}{*}{Expectation}    & $v^\pi(s)=\mathbb{E}_\pi[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=s]$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Policy \\ Evaluation\end{tabular}} \\ \cline{3-3}
-			                            &                                 & $q^\pi(s,a)=\mathbb{E}_\pi[R_{t+1}+\gamma q^\pi(S_{t+1}, A_{t+1})|S_t=t,A_t=a]$   &                                    \\ \hline
-			\multirow{2}{*}{Control}    & \multirow{2}{*}{Expectation}    & $v^\pi(s)=\mathbb{E}_\pi[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=s]$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Policy \\ Iteration\end{tabular}}  \\ \cline{3-3}
-			                            &                                 & $q^\pi(s,a)=\mathbb{E}_\pi[R_{t+1}+\gamma q^\pi(S_{t+1}, A_{t+1})|S_t=t,A_t=a]$   &                                    \\ \hline
-			\multirow{2}{*}{Control}    & \multirow{2}{*}{Optimality}     & $v^\ast(s)=\max_a R_s^a+\gamma\sum_{s'\in \mathcal{S}}P(s'|s,a)v^\ast(s')$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Value \\ Iteration\end{tabular}}   \\ \cline{3-3}
-			                            &                                 & $q^\ast(s,a)=R_s^a +\gamma\sum_{s'\in \mathcal{S}}P(s'|s,a)\max_{a'}q^\ast(s',a')$   &                                    \\ \hline
-			\end{tabular}
-			\caption{Dynamic Programming algorithms for MDPs}
-			\label{dp_comp}
-			\end{table}
+		The summary for evaluation and control in MDP by dynamic programming is shown in Table~\ref{dp_comp}.
+	
+		% Please add the following required packages to your document preamble:
+		% \usepackage{multirow}
+		\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+		Problem                     & \multicolumn{2}{c|}{Bellman Equation} & Algorithm                          \\ \hline
+		\multirow{2}{*}{Prediction} & \multirow{2}{*}{Expectation}    & $v^\pi(s)=\mathbb{E}_\pi[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=s]$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Policy \\ Evaluation\end{tabular}} \\ \cline{3-3}
+		                            &                                 & $q^\pi(s,a)=\mathbb{E}_\pi[R_{t+1}+\gamma q^\pi(S_{t+1}, A_{t+1})|S_t=t,A_t=a]$   &                                    \\ \hline
+		\multirow{2}{*}{Control}    & \multirow{2}{*}{Expectation}    & $v^\pi(s)=\mathbb{E}_\pi[R_{t+1}+\gamma v^\pi(S_{t+1})|S_t=s]$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Policy \\ Iteration\end{tabular}}  \\ \cline{3-3}
+		                            &                                 & $q^\pi(s,a)=\mathbb{E}_\pi[R_{t+1}+\gamma q^\pi(S_{t+1}, A_{t+1})|S_t=t,A_t=a]$   &                                    \\ \hline
+		\multirow{2}{*}{Control}    & \multirow{2}{*}{Optimality}     & $v^\ast(s)=\max_a R_s^a+\gamma\sum_{s'\in \mathcal{S}}P(s'|s,a)v^\ast(s')$   & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Value \\ Iteration\end{tabular}}   \\ \cline{3-3}
+		                            &                                 & $q^\ast(s,a)=R_s^a +\gamma\sum_{s'\in \mathcal{S}}P(s'|s,a)\max_{a'}q^\ast(s',a')$   &                                    \\ \hline
+		\end{tabular}
+		\caption{Dynamic Programming algorithms for MDPs}
+		\label{dp_comp}
+		\end{table}
 
 \pagebreak
 
@@ -1337,7 +1335,7 @@
 
 	On-policy may not ensure the enough exploration of the state space as when we update the policy greedily we may discard those states with great potential. Compared with on-policy learning, off-policy learning is more powerful and general, though it is often of greater variance and is slower to converge.\\
 
-		\subsection{On Policy Monte-Carlo Control}
+	\subsection{On Policy Monte-Carlo Control}
 
 			Like MC evaluation we mentioned in section~\ref{subsec: Monte-Carlo Policy Evaluation}, MC control also requires fully episodes to improve the policy. It is natural to alternate between evaluation and improvement on an episode-by-episode basis. The following algorithms are based on the implementation of MC, and the differences lie in how they generate samples.
 
@@ -1391,7 +1389,7 @@
 			\[\pi(a|s)=\frac{e^{\beta\hat q(s,a)}}{\sum_{a'}e^{\beta\hat q(s,a')}},\]
 			\textit{where $\hat q(s,a)$ is the estimation of the value of being in state $s$ and taking action $a$, $\beta$ is a tunable parameter.}\\
 
-		\subsection{On Policy Temporal-Difference Control: Sarsa}
+	\subsection{On Policy Temporal-Difference Control: Sarsa}
 
 			As we mentioned before, Temporal-Difference(TD) learning has several advantages over Monte-Carlo (MC) such as lower variance, online, incomplete sequences. The difference between TD control and TD learning is similar to that between MC control and MC learning. What we need to do is applying TD to $Q(S,A)$ and updating the policy every time-step.\\
 
@@ -1428,7 +1426,7 @@
             	\[q(s_t,a_t)\gets q(a_t,t_t)+\alpha (q_t^{(n)}-q(s_t,a_t)).\]
             Like what we mentioned in $n$-step TD learning, when $n\to\infty$, Sarsa$\to$MC.\\
 
-		\subsection{Off-Policy Temporal-Difference Control: Q-Learning}
+	\subsection{Off-Policy Temporal-Difference Control: Q-Learning}
 
 			The development of Q-learning is a big breakout in the early days of Reinforcement Learning.
 
@@ -1461,7 +1459,7 @@
 	        \end{algorithm}
 
             One should notice that different with TD Sarsa in line 8, the action Q-learning uses to update $q(s,a)$ in line 7 is not the same as the one it truly takes.\\
-\begin{comment}
+			\begin{comment}
             The comparison of Sarsa and Q-Learning is shown as follows:
 
             Sarsa: On-Policy TD control
@@ -1492,7 +1490,7 @@
 
 			\textbf{Importance Sampling for Off-Policy TD}: \textit{Weight TD target $R+\gamma V(S')$ by importance sampling, then we only need a single importance sampling correction to update the value}
 			\[V(S_t)\gets V(S_t)+\alpha\left(\frac{\pi(A_t|S_t)}{\mu(A_t|S_t)}(R_{t+1}+\gamma V(S_{t+1}))-V(S_t)\right).\]
-\end{comment}
+			\end{comment}
 
 \pagebreak
 
@@ -1524,7 +1522,7 @@
 		\end{itemize}
 	Among those, we will focus on the first two as they are differentiable and thus easy to be optimized. It is worth to notice that though such generalization makes the learning potentially more powerful (it may even applicable to partially observable problems), it is potentially more difficult to manage and understand.\\
 
-		\subsection{Semi-gradient Method}
+	\subsection{Semi-gradient Method}
 
 			Now we consider a naive case where we have an oracle for knowing the true value $v^\pi(s)$ for any given state $s$ under policy $\pi$. Then the object is to find the estimator $\hat{v}(s,\bm{w})$ approximating $v^\pi(s)$. We can define the loss function by the mean squared error:
 			\[J(\bm{w})=\mathbb{E}_\pi[(v^\pi(s)-\hat v(s,\bm{w}))^2],\]
